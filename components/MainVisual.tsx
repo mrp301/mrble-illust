@@ -7,7 +7,7 @@ const height = [300, 540];
 
 const mainVisual = css(
   mq({
-    margin: "0 auto",
+    margin: ["0 auto 80px", "0 auto"],
     maxWidth: ["100%", layout.maxWidth],
     height,
     backgroundImage: "url(/images/main-visual1.jpg)",

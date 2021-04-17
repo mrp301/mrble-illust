@@ -57,10 +57,10 @@ export const Header = () => {
         <nav>
           <ul css={menu}>
             <li>
-              <Link href="home">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="home">Book</Link>
+              <Link href="/book">Book</Link>
             </li>
             <li>
               <Link href="home">Illustration</Link>

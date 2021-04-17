@@ -6,6 +6,7 @@ import { layout } from "../styles/layout";
 
 const footer = css({
   width: "100%",
+  marginTop: 50,
   padding: "30px 10px",
   borderTop: `1px solid ${color.gray[30]}`,
   display: "flex",
