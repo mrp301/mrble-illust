@@ -3,6 +3,7 @@ import { jsx, css } from "@emotion/react";
 import Link from "next/link";
 import { color } from "../styles/theme";
 import { layout } from "../styles/layout";
+import { mq } from "../styles/mediaQueries";
 
 const h1 = css({
   fontWeight: "bold",
@@ -12,9 +13,11 @@ const h1 = css({
   },
 });
 
-const header = css({
-  padding: "10px 0 10px 40px",
-});
+const header = css(
+  mq({
+    padding: ["15px 20px", "10px 0 10px 40px"],
+  })
+);
 
 const inner = css({
   display: "flex",
@@ -24,23 +27,25 @@ const inner = css({
   margin: "0 auto",
 });
 
-const menu = css({
-  display: "flex",
-  li: {
-    a: {
-      marginRight: 40,
-      padding: "10px 0",
-      display: "block",
-      fontSize: 15,
-      color: color.gray[70],
-      textDecoration: "none",
-      "&:hover": {
-        color: color.black,
-        textDecoration: "underline",
+const menu = css(
+  mq({
+    display: ["none", "flex"],
+    li: {
+      a: {
+        marginRight: 40,
+        padding: "10px 0",
+        display: "block",
+        fontSize: 15,
+        color: color.gray[70],
+        textDecoration: "none",
+        "&:hover": {
+          color: color.black,
+          textDecoration: "underline",
+        },
       },
     },
-  },
-});
+  })
+);
 
 export const Header = () => {
   return (
