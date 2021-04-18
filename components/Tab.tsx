@@ -10,7 +10,6 @@ const tab = css(
     position: "sticky",
     top: 0,
     width: "100%",
-    overflowX: "scroll",
     display: "flex",
     marginBottom: [6, 30],
     borderBottom: `1px solid ${color.gray[30]}`,
@@ -28,21 +27,24 @@ const TabItem = ({ href, text }) => {
     push(href, undefined, { scroll: false });
   };
 
-  const item = css({
-    position: "relative",
-    bottom: -1,
-    a: {
+  const item = css(
+    mq({
       position: "relative",
-      padding: "20px 30px",
-      display: "block",
-      fontSize: 16,
-      fontWeight: isActive ? "bold" : "normal",
-      textAlign: "center",
-      color: isActive ? color.primary : "#000",
-      borderBottom: isActive ? `solid 2px ${color.primary}` : "none",
-      textDecoration: "none",
-    },
-  });
+      bottom: -1,
+      width: ["100%", "auto"],
+      a: {
+        position: "relative",
+        padding: ["20px 0", "20px 30px"],
+        display: "block",
+        fontSize: 16,
+        fontWeight: isActive ? "bold" : "normal",
+        textAlign: "center",
+        color: isActive ? color.primary : "#000",
+        borderBottom: isActive ? `solid 2px ${color.primary}` : "none",
+        textDecoration: "none",
+      },
+    })
+  );
 
   return (
     <li css={item}>
