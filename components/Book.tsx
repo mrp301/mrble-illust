@@ -4,12 +4,18 @@ import Link from "next/link";
 import { color } from "../styles/theme";
 import { mq } from "../styles/mediaQueries";
 import Image from "next/image";
+import { bookData } from "../lib/bookData";
+
+type Props = {
+  toggleModal: Function;
+  setBookData: React.Dispatch<React.SetStateAction<string>>;
+};
 
 const booksList = css(
   mq({
     display: "grid",
     gridTemplateColumns: ["1fr 1fr", "1fr 1fr 1fr"],
-    margin: ["0 2px", -12],
+    margin: ["0 2px", "0 auto"],
     li: {
       margin: [4, 6],
       "&:hover": {
@@ -30,7 +36,7 @@ const bookInfo = css(
 const bookTitle = css({
   fontWeight: "bold",
   fontSize: 20,
-  marginBottom: 12,
+  marginBottom: 8,
 });
 
 const bookRelease = css({
@@ -44,64 +50,49 @@ const bookEvent = css({
   color: color.gray[50],
 });
 
-const images = [
-  {
-    title: "Nirvana",
-    fileName: "nirvana.jpg",
-    release: "2020年12月27日",
-    event: "プリズムジャンプ31",
-  },
-  {
-    title: "乙女TIME",
-    fileName: "otome.jpg",
-    release: "2019年3月29日",
-    event: "プリズムジャンプ28",
-  },
-  {
-    title: "桃山みらいの休日",
-    fileName: "holiday.jpg",
-    release: "2019年8月10日",
-    event: "コミックマーケット96",
-  },
-  {
-    title: "プリチャンコンプレックス",
-    fileName: "complex.jpg",
-    release: "2018年12月29日",
-    event: "コミックマーケット95",
-  },
-  {
-    title: "パチュリー様は夏が嫌い！",
-    fileName: "summer.jpg",
-    release: "2018年8月10日",
-    event: "コミックマーケット94",
-  },
-  {
-    title: "ハジライ",
-    fileName: "hazirai.jpg",
-    release: "2017年12月29日",
-    event: "コミックマーケット93",
-  },
-];
+const BookItem = (props) => {
+  const handleClick = (e): void => {
+    e.preventDefault();
+    props.toggleModal();
+    props.setBookData(props.title);
+  };
 
-const Book = ({ fileName, title, release, event }) => {
   return (
-    <li key={fileName}>
-      <Image src={`/images/book/${fileName}`} width={320} height={452} alt={title} />
-      <div css={bookInfo}>
-        <div css={bookTitle}>{title}</div>
-        <div css={bookRelease}>{release}</div>
-        <div css={bookEvent}>{event}</div>
-      </div>
+    <li>
+      <a onClick={handleClick}>
+        <Image
+          src={`/images/book/${props.fileName}`}
+          width={320}
+          height={452}
+          alt={props.title}
+          layout={"responsive"}
+        />
+        <div css={bookInfo}>
+          <div css={bookTitle}>{props.title}</div>
+          <div css={bookRelease}>{props.release}</div>
+          <div css={bookEvent}>{props.event}</div>
+        </div>
+      </a>
     </li>
   );
 };
 
-export const BookList = () => {
+export const BookList: React.FC<Props> = ({ toggleModal, setBookData }) => {
   return (
-    <ul css={booksList}>
-      {images.map((item) => (
-        <Book fileName={item.fileName} title={item.title} release={item.release} event={item.event} />
-      ))}
-    </ul>
+    <>
+      <ul css={booksList}>
+        {bookData.map((item) => (
+          <BookItem
+            key={item.fileName}
+            fileName={item.fileName}
+            title={item.title}
+            release={item.release}
+            event={item.event}
+            toggleModal={toggleModal}
+            setBookData={setBookData}
+          />
+        ))}
+      </ul>
+    </>
   );
 };

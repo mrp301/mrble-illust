@@ -7,16 +7,26 @@ import { mq } from "../styles/mediaQueries";
 
 const tab = css(
   mq({
+    position: "sticky",
+    top: 0,
     width: "100%",
-    overflow: "scroll",
+    overflowX: "scroll",
     display: "flex",
     marginBottom: [6, 30],
     borderBottom: `1px solid ${color.gray[30]}`,
+    backgroundColor: "#fff",
+    zIndex: 10,
   })
 );
 
-const TabItem = ({ pathname, href, text }) => {
+const TabItem = ({ href, text }) => {
+  const { pathname, push } = useRouter();
   const isActive: Boolean = pathname === href;
+
+  const handleClick = (e): void => {
+    e.preventDefault();
+    push(href, undefined, { scroll: false });
+  };
 
   const item = css({
     position: "relative",
@@ -35,8 +45,10 @@ const TabItem = ({ pathname, href, text }) => {
   });
 
   return (
-    <li key={href} css={item}>
-      <Link href={href}>{text}</Link>
+    <li css={item}>
+      <a href={href} onClick={handleClick}>
+        {text}
+      </a>
     </li>
   );
 };
@@ -61,12 +73,10 @@ const categories = [
 ];
 
 export const Tab = () => {
-  const { pathname } = useRouter();
-
   return (
     <ul css={tab}>
       {categories.map(({ text, href }) => (
-        <TabItem pathname={pathname} text={text} href={href} />
+        <TabItem text={text} href={href} key={href} />
       ))}
     </ul>
   );
