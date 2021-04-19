@@ -30,3 +30,7 @@ Chromeではjpgやpngよりも軽量なwebpに変換して表示してくれる�
 
 
 参考：https://www.forcia.com/blog/001561.html
+
+## Masonry layout
+
+pintarestとかで使われてるレイアウト

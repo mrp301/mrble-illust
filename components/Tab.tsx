@@ -1,9 +1,17 @@
 /** @jsxImportSource @emotion/react */
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { jsx, css } from "@emotion/react";
-import Link from "next/link";
 import { color } from "../styles/theme";
 import { mq } from "../styles/mediaQueries";
+import { motion, AnimateSharedLayout } from "framer-motion";
+
+type TabItemProps = {
+  href: string;
+  text: string;
+  isSelected: boolean;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
+};
 
 const tab = css(
   mq({
@@ -18,12 +26,13 @@ const tab = css(
   })
 );
 
-const TabItem = ({ href, text }) => {
-  const { pathname, push } = useRouter();
-  const isActive: Boolean = pathname === href;
+const TabItem: React.FC<TabItemProps> = ({ href, text, isSelected, setSelected }) => {
+  const { push } = useRouter();
 
   const handleClick = (e): void => {
     e.preventDefault();
+
+    setSelected(href);
     push(href, undefined, { scroll: false });
   };
 
@@ -37,20 +46,33 @@ const TabItem = ({ href, text }) => {
         padding: ["20px 0", "20px 30px"],
         display: "block",
         fontSize: 16,
-        fontWeight: isActive ? "bold" : "normal",
+        fontWeight: isSelected ? "bold" : "normal",
         textAlign: "center",
-        color: isActive ? color.primary : "#000",
-        borderBottom: isActive ? `solid 2px ${color.primary}` : "none",
+        color: isSelected ? color.primary : "#000",
         textDecoration: "none",
       },
     })
   );
+
+  const underLine = css({
+    width: "100%",
+    height: 2,
+    backgroundColor: color.primary,
+  });
 
   return (
     <li css={item}>
       <a href={href} onClick={handleClick}>
         {text}
       </a>
+      {isSelected && (
+        <motion.div
+          css={underLine}
+          layoutId="underLine"
+          initial={false}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+        />
+      )}
     </li>
   );
 };
@@ -75,11 +97,22 @@ const categories = [
 ];
 
 export const Tab = () => {
+  const { pathname } = useRouter();
+  const [selected, setSelected] = useState(pathname);
+
   return (
-    <ul css={tab}>
-      {categories.map(({ text, href }) => (
-        <TabItem text={text} href={href} key={href} />
-      ))}
-    </ul>
+    <AnimateSharedLayout>
+      <ul css={tab}>
+        {categories.map(({ text, href }) => (
+          <TabItem
+            key={href}
+            text={text}
+            href={href}
+            isSelected={selected === href}
+            setSelected={setSelected}
+          />
+        ))}
+      </ul>
+    </AnimateSharedLayout>
   );
 };

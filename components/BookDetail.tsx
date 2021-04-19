@@ -6,6 +6,7 @@ import { margin } from "../styles/margin";
 import Image from "next/image";
 import { bookData } from "../lib/bookData.js";
 import { color } from "../styles/theme";
+import { motion } from "framer-motion";
 
 // type Props = {
 //   title: string;
@@ -14,6 +15,17 @@ import { color } from "../styles/theme";
 //   event: string;
 //   description: string;
 // };
+
+const variants = {
+  initial: {
+    y: 60,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 type Props = {
   toggleModal: Function;
@@ -108,7 +120,7 @@ const table = css({
   tr: {
     margin: 10,
     borderBottom: `solid 1px ${color.gray[40]}`,
-    "&:first-child": {
+    "&:first-of-type": {
       borderTop: `solid 1px ${color.gray[40]}`,
     },
   },
@@ -145,7 +157,13 @@ export const BookDetail: React.FC<Props> = (props) => {
     <>
       <div css={orverlay}></div>
       <div css={modalContainer} onClick={() => props.toggleModal()}>
-        <div css={modal}>
+        <motion.div
+          css={modal}
+          variants={variants}
+          initial="initial"
+          animate="visible"
+          transition={{ duration: 0.25, ease: "easeInOut" }}
+        >
           <div css={closeBtn}>×</div>
           <div css={inner}>
             <Image
@@ -171,7 +189,7 @@ export const BookDetail: React.FC<Props> = (props) => {
               </table>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

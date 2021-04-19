@@ -5,6 +5,7 @@ import { color } from "../styles/theme";
 import { mq } from "../styles/mediaQueries";
 import Image from "next/image";
 import { bookData } from "../lib/bookData";
+import { motion } from "framer-motion";
 
 type Props = {
   toggleModal: Function;

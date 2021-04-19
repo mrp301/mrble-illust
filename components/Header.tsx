@@ -54,7 +54,7 @@ export const Header = () => {
         <h1 css={h1}>
           <Link href="/">mrble illustration</Link>
         </h1>
-        <nav>
+        {/* <nav>
           <ul css={menu}>
             <li>
               <Link href="/">Home</Link>
@@ -63,13 +63,13 @@ export const Header = () => {
               <Link href="/book">Book</Link>
             </li>
             <li>
-              <Link href="home">Illustration</Link>
+              <Link href="/illustration">Illustration</Link>
             </li>
             <li>
-              <Link href="home">Drawing</Link>
+              <Link href="/drawing">Drawing</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
       </div>
     </header>
   );
