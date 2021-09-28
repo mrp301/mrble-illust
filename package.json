@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "eslint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
-    "prettier:fix": "prettier --write ."
+    "prettier:fix": "prettier --write .",
+    "firebase-dev": "firebase emulators:start --only storage --import ./emurator-export/ --export-on-exit=./emurator-export/"
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",
@@ -21,6 +22,8 @@
     "next": "^10.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-sizeme": "^3.0.2",
+    "react-stack-grid": "^0.7.1",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
