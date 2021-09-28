@@ -1,3 +1,5 @@
+const isDev = process.env.NODE_ENV === "development";
+
 module.exports = {
   webpack: (config, options) => {
     config.module.rules.push({
@@ -10,5 +12,8 @@ module.exports = {
       },
     });
     return config;
+  },
+  images: {
+    domains: ["firebasestorage.googleapis.com", isDev && "localhost"],
   },
 };
