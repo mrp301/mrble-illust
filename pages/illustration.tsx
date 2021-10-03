@@ -5,6 +5,7 @@ import { MasonryImageList, ImageType } from "../components";
 import { getImages } from "../lib/firebase";
 import { getLayout } from "../lib/getLayout";
 import { WithLayout } from "../index";
+import "dayjs/locale/ja";
 import dayjs from "dayjs";
 
 type Props = {
@@ -19,13 +20,14 @@ export const getStaticProps = async () => {
     name: url,
   }));
 
-  const update = dayjs().format("YYYY年M月D日hh:mm");
+  const update = dayjs().locale("ja").format("YYYY年M月D日hh時mm分ss秒");
 
   return {
     props: {
       images,
       update,
     },
+    revalidate: 10,
   };
 };
 
