@@ -8,14 +8,6 @@ import { bookData } from "../lib/bookData.js";
 import { color } from "../styles/theme";
 import { motion } from "framer-motion";
 
-// type Props = {
-//   title: string;
-//   fileName: string;
-//   release: string;
-//   event: string;
-//   description: string;
-// };
-
 const variants = {
   initial: {
     y: 60,

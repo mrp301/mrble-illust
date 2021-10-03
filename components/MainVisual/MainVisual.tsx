@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { layout } from "../styles/layout";
-import { mq } from "../styles/mediaQueries";
+import { layout } from "../../styles/layout";
+import { mq } from "../../styles/mediaQueries";
 
 const height = [300, 540];
 

@@ -1,12 +1,37 @@
-import React from "react";
+import React, { VFC } from "react";
 import { CommonHead } from "../components/CommonHead";
 import { FadeIn } from "../components/FadeIn";
+import { MasonryImageList, ImageType } from "../components";
+import { getLayout } from "../lib/getLayout";
+import { getImages } from "../lib/firebase";
+import { WithLayout } from "../index";
 
-export default function Index() {
+type Props = {
+  images: ImageType[];
+};
+
+export const getStaticProps = async () => {
+  const urls = await getImages("drawing");
+  const images = urls.map((url) => ({
+    url: `https://storage.cloud.google.com/mrble-illust.appspot.com/${url}`,
+    name: url,
+  }));
+
+  return {
+    props: {
+      images,
+    },
+  };
+};
+
+const Drawing: WithLayout<VFC<Props>> = ({ images }) => {
   return (
-    <FadeIn>
-      <CommonHead title="Illustration" />
-      模写
-    </FadeIn>
+    <>
+      <CommonHead title="drawing" />
+      <FadeIn>{<MasonryImageList images={images} />}</FadeIn>
+    </>
   );
-}
+};
+
+Drawing.getLayout = getLayout;
+export default Drawing;

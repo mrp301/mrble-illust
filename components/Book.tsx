@@ -1,11 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import Link from "next/link";
 import { color } from "../styles/theme";
 import { mq } from "../styles/mediaQueries";
 import Image from "next/image";
 import { bookData } from "../lib/bookData";
-import { motion } from "framer-motion";
 
 type Props = {
   toggleModal: Function;
@@ -15,10 +13,14 @@ type Props = {
 const booksList = css(
   mq({
     display: "grid",
-    gridTemplateColumns: ["1fr 1fr", "1fr 1fr 1fr"],
+    gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
+    columnGap: [8, 12],
     margin: ["0 2px", "0 auto"],
     li: {
-      margin: [4, 6],
+      marginBottom: [8, 12],
+      borderRadius: 4,
+      overflow: "hidden",
+      backgroundColor: "#fff",
       "&:hover": {
         cursor: "pointer",
         opacity: 0.8,
@@ -80,20 +82,15 @@ const BookItem = (props) => {
 
 export const BookList: React.FC<Props> = ({ toggleModal, setBookData }) => {
   return (
-    <>
-      <ul css={booksList}>
-        {bookData.map((item) => (
-          <BookItem
-            key={item.fileName}
-            fileName={item.fileName}
-            title={item.title}
-            release={item.release}
-            event={item.event}
-            toggleModal={toggleModal}
-            setBookData={setBookData}
-          />
-        ))}
-      </ul>
-    </>
+    <ul css={booksList}>
+      {bookData.map((item) => (
+        <BookItem
+          key={item.fileName}
+          {...item}
+          toggleModal={toggleModal}
+          setBookData={setBookData}
+        />
+      ))}
+    </ul>
   );
 };

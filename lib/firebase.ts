@@ -1,22 +1,18 @@
-import firebase from "firebase/app";
-import "firebase/storage";
+import { initFirebaseAdmin } from "../lib/initFirebaseAdmin";
 
-const firebaseConfig = {
-  apiKey: process.env.apikey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: "mrble-illust.appspot.com",
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
-  measurementId: process.env.measurementId,
+export const getImages = async (name: string) => {
+  const storage = initFirebaseAdmin();
+  const [files] = await storage.getFiles({
+    directory: `${name}/`,
+  });
+
+  const names: string[] = [];
+  files.forEach((file) => {
+    const { name } = file;
+    if (name.includes(".jpg")) {
+      names.push(name);
+    }
+  });
+
+  return names;
 };
-
-!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
-const storage = firebase.storage();
-
-const isDev = process.env.NODE_ENV === "development";
-if (isDev) {
-  firebase.storage().useEmulator("localhost", 9199);
-}
-
-export { storage };

@@ -13,17 +13,20 @@
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@google-cloud/firestore": "^4.10.0",
+    "@material/image-list": "^13.0.0",
     "axios": "^0.21.1",
+    "dayjs": "^1.10.7",
     "facepaint": "^1.2.1",
     "file-loader": "^6.2.0",
     "firebase": "^8.4.2",
-    "firebase-admin": "^9.6.0",
+    "firebase-admin": "^9.12.0",
     "framer-motion": "^4.1.5",
     "next": "^10.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-sizeme": "^3.0.2",
     "react-stack-grid": "^0.7.1",
+    "sass": "^1.42.1",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
