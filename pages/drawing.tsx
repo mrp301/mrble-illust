@@ -3,7 +3,7 @@ import { CommonHead } from "../components/CommonHead";
 import { FadeIn } from "../components/FadeIn";
 import { MasonryImageList, ImageType } from "../components";
 import { getLayout } from "../lib/getLayout";
-import { getImages } from "../lib/firebase";
+// import { getImages } from "../lib/firebase";
 import { WithLayout } from "../index";
 
 type Props = {
@@ -11,11 +11,17 @@ type Props = {
 };
 
 export const getStaticProps = async () => {
-  const urls = await getImages("drawing");
-  const images = urls.map((url) => ({
-    url: `https://storage.cloud.google.com/mrble-illust.appspot.com/${url}`,
-    name: url,
-  }));
+  // const urls = await getImages("drawing");
+  // const images = urls.map((url) => ({
+  //   url: `https://storage.cloud.google.com/mrble-illust.appspot.com/${url}`,
+  //   name: url,
+  // }));
+  const images = [
+    {
+      url: "hoge",
+      name: "hoge",
+    },
+  ];
 
   return {
     props: {
@@ -29,7 +35,8 @@ const Drawing: WithLayout<VFC<Props>> = ({ images }) => {
   return (
     <>
       <CommonHead title="drawing" />
-      <FadeIn>{<MasonryImageList images={images} />}</FadeIn>
+      <p>非表示</p>
+      {/* <FadeIn>{<MasonryImageList images={images} />}</FadeIn> */}
     </>
   );
 };

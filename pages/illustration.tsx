@@ -2,7 +2,7 @@ import React, { VFC } from "react";
 import { CommonHead } from "../components/CommonHead";
 import { FadeIn } from "../components/FadeIn";
 import { MasonryImageList, ImageType } from "../components";
-import { getImages } from "../lib/firebase";
+// import { getImages } from "../lib/firebase";
 import { getLayout } from "../lib/getLayout";
 import { WithLayout } from "../index";
 import "dayjs/locale/ja";
@@ -14,11 +14,17 @@ type Props = {
 };
 
 export const getStaticProps = async () => {
-  const urls = await getImages("illustration");
-  const images = urls.map((url) => ({
-    url: `https://storage.cloud.google.com/mrble-illust.appspot.com/${url}`,
-    name: url,
-  }));
+  // const urls = await getImages("illustration");
+  // const images = urls.map((url) => ({
+  //   url: `https://storage.cloud.google.com/mrble-illust.appspot.com/${url}`,
+  //   name: url,
+  // }));
+  const images = [
+    {
+      url: "hoge",
+      name: "hoge",
+    },
+  ];
 
   const update = dayjs().locale("ja").format("YYYY年M月D日hh時mm分ss秒");
 
@@ -35,7 +41,8 @@ const Illustration: WithLayout<VFC<Props>> = ({ images, update }) => {
   return (
     <>
       <CommonHead title="Illustration" />
-      <FadeIn>{images && <MasonryImageList images={images} />}</FadeIn>
+      {/* <FadeIn>{images && <MasonryImageList images={images} />}</FadeIn> */}
+      <p>非表示</p>
       <p>
         更新日時：<time dateTime={update}>{update}</time>
       </p>
