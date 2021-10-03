@@ -27,7 +27,7 @@ export const getStaticProps = async () => {
       images,
       update,
     },
-    revalidate: 10,
+    // revalidate: 10,
   };
 };
 
