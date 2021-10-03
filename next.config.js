@@ -14,6 +14,6 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ["firebasestorage.googleapis.com", isDev && "localhost"],
+    domains: ["firebasestorage.googleapis.com"],
   },
 };
