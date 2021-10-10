@@ -12,6 +12,7 @@
 }
 
 .mdc-image-list__image {
+  overflow: hidden;
   img {
     width: 100%;
   }

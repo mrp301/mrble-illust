@@ -5,7 +5,7 @@ export const getImages = async (name: string) => {
   const [files] = await storage.getFiles({
     directory: `${name}/`,
     autoPaginate: true,
-    maxResults: 1,
+    maxResults: 10,
   });
 
   const names: string[] = [];
