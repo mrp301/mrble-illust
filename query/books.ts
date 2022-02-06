@@ -7,6 +7,7 @@ export default graphql`
         title
         page
         cover {
+          title
           url
           width
           height

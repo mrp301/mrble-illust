@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<44803e33adfa026f8fadf0206e1f61f9>>
+ * @generated SignedSource<<1d0ea86e938d6be55f2dad93c6652d46>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,7 @@ export type booksQuery$data = {
       readonly title: string | null;
       readonly page: number | null;
       readonly cover: {
+        readonly title: string | null;
         readonly url: string | null;
         readonly width: number | null;
         readonly height: number | null;
@@ -31,7 +32,14 @@ export type booksQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "title",
+  "storageKey": null
+},
+v1 = [
   {
     "alias": null,
     "args": null,
@@ -48,13 +56,7 @@ var v0 = [
         "name": "items",
         "plural": true,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "title",
-            "storageKey": null
-          },
+          (v0/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -70,6 +72,7 @@ var v0 = [
             "name": "cover",
             "plural": false,
             "selections": [
+              (v0/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -107,7 +110,7 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "booksQuery",
-    "selections": (v0/*: any*/),
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
@@ -116,19 +119,19 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "booksQuery",
-    "selections": (v0/*: any*/)
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "1ef5255192ca25c92fdbdbad9b395f64",
+    "cacheID": "2247d807f9ea12ee9f75f7d630fff08e",
     "id": null,
     "metadata": {},
     "name": "booksQuery",
     "operationKind": "query",
-    "text": "query booksQuery {\n  booksCollection {\n    items {\n      title\n      page\n      cover {\n        url\n        width\n        height\n      }\n    }\n  }\n}\n"
+    "text": "query booksQuery {\n  booksCollection {\n    items {\n      title\n      page\n      cover {\n        title\n        url\n        width\n        height\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "5a8f3dca6d034013f7b9e99a8dcac30f";
+(node as any).hash = "61f798a29f7708f330a075e8a7af0d68";
 
 export default node;

@@ -12,6 +12,6 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ["storage.cloud.google.com", "graphql.contentful.com"],
+    domains: ["storage.cloud.google.com", "images.ctfassets.net"],
   },
 };
