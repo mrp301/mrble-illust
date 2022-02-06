@@ -5,7 +5,7 @@ export default graphql`
     booksCollection {
       items {
         title
-        page
+        slug
         cover {
           title
           url
@@ -16,16 +16,3 @@ export default graphql`
     }
   }
 `;
-
-//   fragment books on BooksCollection {
-//     items {
-//       title
-//       page
-//       cover {
-//         url
-//         width
-//         height
-//       }
-//     }
-//   }
-// `;
