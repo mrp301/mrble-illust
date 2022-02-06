@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1d0ea86e938d6be55f2dad93c6652d46>>
+ * @generated SignedSource<<3f8c64cd45aa299bef06e6df24b45692>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type booksQuery$data = {
   readonly booksCollection: {
     readonly items: ReadonlyArray<{
       readonly title: string | null;
-      readonly page: number | null;
+      readonly slug: string | null;
       readonly cover: {
         readonly title: string | null;
         readonly url: string | null;
@@ -61,7 +61,7 @@ v1 = [
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "page",
+            "name": "slug",
             "storageKey": null
           },
           {
@@ -122,16 +122,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "2247d807f9ea12ee9f75f7d630fff08e",
+    "cacheID": "e1c0f3c5d63a8fd268ec6e95201c4571",
     "id": null,
     "metadata": {},
     "name": "booksQuery",
     "operationKind": "query",
-    "text": "query booksQuery {\n  booksCollection {\n    items {\n      title\n      page\n      cover {\n        title\n        url\n        width\n        height\n      }\n    }\n  }\n}\n"
+    "text": "query booksQuery {\n  booksCollection {\n    items {\n      title\n      slug\n      cover {\n        title\n        url\n        width\n        height\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "61f798a29f7708f330a075e8a7af0d68";
+(node as any).hash = "53e3aa78ae421b94816d27efad9d5387";
 
 export default node;
