@@ -1,8 +1,10 @@
-import type { ReactElement, ReactNode } from "react";
-import type { NextPage } from "next";
-import type { AppProps } from "next/app";
+import React, { VFC, ReactElement, ReactNode } from "react";
+import { NextPage } from "next";
+import { AppProps } from "next/app";
 import "../styles/global.scss";
 import "../styles/MasonryImageList.scss";
+import { RelayEnvironmentProvider } from "relay-hooks";
+import Environment from "../relay/RelayEnvironment";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -12,10 +14,14 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-const App = ({ Component, pageProps }: AppPropsWithLayout) => {
+const App: VFC<AppPropsWithLayout> = ({ Component, pageProps }) => {
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <RelayEnvironmentProvider environment={Environment}>
+      {getLayout(<Component {...pageProps} />)}
+    </RelayEnvironmentProvider>
+  );
 };
 
 export default App;
