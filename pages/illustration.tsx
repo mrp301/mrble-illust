@@ -1,50 +1,12 @@
 import React, { VFC } from "react";
 import { CommonHead } from "../components/CommonHead";
-import { FadeIn } from "../components/FadeIn";
-import { MasonryImageList, ImageType } from "../components";
-import { getImages } from "../lib/firebase";
 import { getLayout } from "../lib/getLayout";
-import { WithLayout } from "../index";
-import "dayjs/locale/ja";
-import dayjs from "dayjs";
 
-type Props = {
-  images: ImageType[];
-  update: string;
-};
-
-export const getStaticProps = async () => {
-  const urls = await getImages("illustration/tmb");
-  const images = urls.map((url) => ({
-    url: `https://storage.cloud.google.com/mrble-illust.appspot.com/${url}`,
-    name: url,
-  }));
-
-  // const images = [
-  //   {
-  //     url: "hoge",
-  //     name: "hoge",
-  //   },
-  // ];
-
-  const update = dayjs().locale("ja").format("YYYY年M月D日hh時mm分ss秒");
-
-  return {
-    props: {
-      images,
-      update,
-    },
-  };
-};
-
-const Illustration: WithLayout<VFC<Props>> = ({ images, update }) => {
+const Illustration: WithLayout<VFC> = () => {
   return (
     <>
       <CommonHead title="Illustration" />
-      <FadeIn>{images && <MasonryImageList images={images} />}</FadeIn>
-      <p>
-        更新日時：<time dateTime={update}>{update}</time>
-      </p>
+      <p>削除予定</p>
     </>
   );
 };

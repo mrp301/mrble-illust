@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import React, { useState, VFC } from "react";
 import { CommonHead } from "../components/CommonHead";
 import { BookList } from "../components/Book";
 import { BookDetail } from "../components/BookDetail";
@@ -14,7 +13,7 @@ type Book = {
   description: string;
 };
 
-const Book = () => {
+const Book: WithLayout<VFC> = () => {
   const [visible, setVisible] = useState(false);
   const [bookData, setBookData] = useState<string>();
 
