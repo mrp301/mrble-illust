@@ -1,8 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { FC } from "react";
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
+import React, { VFC, ReactNode } from "react";
 
-const Card: FC = ({ children }) => <div css={styles.container}>{children}</div>;
+type Props = {
+  children: ReactNode;
+};
+
+const Card: VFC<Props> = ({ children }) => <div css={styles.container}>{children}</div>;
 
 const styles = {
   container: css({

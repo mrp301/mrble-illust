@@ -1,4 +1,3 @@
-export * from "./MasonryImageList";
 export * from "./MainVisual";
 export * from "./Header";
 export * from "./Footer";

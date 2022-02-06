@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import React, { VFC } from "react";
-import { jsx, css } from "@emotion/react";
 import { color } from "../../styles/theme";
 import { mq } from "../../styles/mediaQueries";
 import { useTab } from "./dependencies";
@@ -12,7 +12,7 @@ type Props = {
   isSelected: boolean;
 };
 
-const TabItem: React.VFC<Props> = ({ href, text, isSelected }) => {
+const TabItem: VFC<Props> = ({ href, text, isSelected }) => {
   const { handleClick } = useTab();
 
   return (

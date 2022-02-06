@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import React, { FC } from "react";
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
+import React, { VFC, ReactNode } from "react";
 
 type Props = {
+  children: ReactNode;
   horizontal?: number;
   vertical?: number;
 };
 
-const Container: FC<Props> = ({ children, horizontal = 16, vertical = 16 }) => (
+const Container: VFC<Props> = ({ children, horizontal = 16, vertical = 16 }) => (
   <div css={styles.container(horizontal, vertical)}>{children}</div>
 );
 

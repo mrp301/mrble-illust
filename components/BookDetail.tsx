@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
+import React from "react";
 import { mq } from "../styles/mediaQueries";
 import { zIndex } from "../styles/zIndex";
 import { margin } from "../styles/margin";
@@ -20,7 +21,7 @@ const variants = {
 };
 
 type Props = {
-  toggleModal: Function;
+  toggleModal: () => void;
   title: string;
 };
 

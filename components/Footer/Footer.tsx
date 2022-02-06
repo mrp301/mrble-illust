@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { VFC } from "react";
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
 import { color } from "../../styles/theme";
 import { layout } from "../../styles/layout";
 

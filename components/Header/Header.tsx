@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
+import React, { VFC } from "react";
 import Link from "next/link";
-import { color } from "../../styles/theme";
 import { layout } from "../../styles/layout";
 import { mq } from "../../styles/mediaQueries";
 
-const Header = () => {
+const Header: VFC = () => {
   return (
     <header css={styles.container}>
       <div css={styles.inner}>

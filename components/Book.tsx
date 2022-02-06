@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
+import React, { VFC } from "react";
 import { color } from "../styles/theme";
 import { mq } from "../styles/mediaQueries";
 import Image from "next/image";
 import { bookData } from "../lib/bookData";
 
 type Props = {
-  toggleModal: Function;
+  toggleModal: () => void;
   setBookData: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -80,7 +81,7 @@ const BookItem = (props) => {
   );
 };
 
-export const BookList: React.FC<Props> = ({ toggleModal, setBookData }) => {
+export const BookList: VFC<Props> = ({ toggleModal, setBookData }) => {
   return (
     <ul css={booksList}>
       {bookData.map((item) => (

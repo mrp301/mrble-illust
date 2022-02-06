@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { FC } from "react";
-import type { ReactElement } from "react";
+import React, { VFC, ReactNode } from "react";
 import { css } from "@emotion/react";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
@@ -10,7 +9,11 @@ import { Container } from "../Container";
 import { mq } from "../../styles/mediaQueries";
 import { maxWidth } from "../../constants";
 
-const WithMainVisual: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+const WithMainVisual: VFC<Props> = ({ children }) => {
   return (
     <>
       <Header />

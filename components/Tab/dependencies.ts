@@ -18,14 +18,22 @@ export const categories = [
     text: "Drawing",
     href: "/drawing",
   },
-];
+] as const;
 
-export const useTab = () => {
+type HandleClick = (e: React.FormEvent<HTMLButtonElement>, href: string) => void;
+
+type UseTab = {
+  selected: string;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
+  handleClick: HandleClick;
+};
+
+export const useTab = (): UseTab => {
   const { push } = useRouter();
   const { pathname } = useRouter();
   const [selected, setSelected] = useState<string>(pathname);
 
-  const handleClick = (e: React.FormEvent<HTMLButtonElement>, href: string) => {
+  const handleClick: HandleClick = (e, href) => {
     e.preventDefault();
 
     setSelected(href);

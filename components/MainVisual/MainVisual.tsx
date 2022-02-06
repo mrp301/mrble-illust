@@ -1,7 +1,22 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
+import React, { VFC } from "react";
 import { layout } from "../../styles/layout";
 import { mq } from "../../styles/mediaQueries";
+
+export const MainVisual: VFC = () => {
+  return (
+    <div css={mainVisual}>
+      <div css={inner}>
+        <div css={titleContainer}>
+          <div css={main}>mrble</div>
+          <div css={sub}>illustration</div>
+          <div css={description}>過去に描いた絵や同人誌などをまとめたサイト。</div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const height = [300, 540];
 
@@ -77,17 +92,3 @@ const description = css(
     ...titleBackColor,
   })
 );
-
-export const MainVisual = () => {
-  return (
-    <div css={mainVisual}>
-      <div css={inner}>
-        <div css={titleContainer}>
-          <div css={main}>mrble</div>
-          <div css={sub}>illustration</div>
-          <div css={description}>過去に描いた絵や同人誌などをまとめたサイト。</div>
-        </div>
-      </div>
-    </div>
-  );
-};

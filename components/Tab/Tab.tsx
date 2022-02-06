@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import React, { VFC } from "react";
-import { jsx, css } from "@emotion/react";
 import { AnimateSharedLayout } from "framer-motion";
 
 import { color } from "../../styles/theme";
