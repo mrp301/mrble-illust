@@ -1,4 +1,4 @@
-## prettoerrc
+## .prettierrc
 
 - trailingComma:ES5で有効な末尾のカンマ(オブジェクト、配列など) つける
 - semi:末尾にセミコロン追加
@@ -33,8 +33,8 @@ Chromeではjpgやpngよりも軽量なwebpに変換して表示してくれる�
 
 ## Masonry layout
 
-pintarestとかで使われてるレイアウト
-  
+Pinterestとかで使われてるレイアウト
+
 ## コードフォーマット関連
 
 参考；https://qiita.com/sprout2000/items/ee4fc97f83f45ba1d227
