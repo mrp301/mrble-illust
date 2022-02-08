@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<102cc493ff19cda9ab10428c993b8bc3>>
+ * @generated SignedSource<<36c874f36be4f0622b4f03944bd2c009>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,7 @@ export type bookDetailQueryVariables = bookDetailQuery$variables;
 export type bookDetailQuery$data = {
   readonly booksCollection: {
     readonly items: ReadonlyArray<{
-      readonly title: string | null;
-      readonly slug: string | null;
-      readonly page: number | null;
-      readonly releaseDate: any | null;
-      readonly event: string | null;
-      readonly plateType: string | null;
-      readonly price: number | null;
+      readonly buy: string | null;
       readonly cover: {
         readonly title: string | null;
         readonly url: string | null;
@@ -32,6 +26,22 @@ export type bookDetailQuery$data = {
       readonly description: {
         readonly json: any;
       } | null;
+      readonly event: string | null;
+      readonly page: number | null;
+      readonly plateType: string | null;
+      readonly price: number | null;
+      readonly releaseDate: any | null;
+      readonly samplePagesCollection: {
+        readonly items: ReadonlyArray<{
+          readonly title: string | null;
+          readonly url: string | null;
+          readonly width: number | null;
+          readonly height: number | null;
+        } | null>;
+      } | null;
+      readonly slug: string | null;
+      readonly title: string | null;
+      readonly tag: ReadonlyArray<string | null> | null;
     } | null>;
   } | null;
 };
@@ -57,6 +67,30 @@ v1 = {
   "storageKey": null
 },
 v2 = [
+  (v1/*: any*/),
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "url",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "width",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "height",
+    "storageKey": null
+  }
+],
+v3 = [
   {
     "alias": null,
     "args": [
@@ -85,47 +119,11 @@ v2 = [
         "name": "items",
         "plural": true,
         "selections": [
-          (v1/*: any*/),
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "slug",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "page",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "releaseDate",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "event",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "plateType",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "price",
+            "name": "buy",
             "storageKey": null
           },
           {
@@ -135,30 +133,7 @@ v2 = [
             "kind": "LinkedField",
             "name": "cover",
             "plural": false,
-            "selections": [
-              (v1/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "url",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "width",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "height",
-                "storageKey": null
-              }
-            ],
+            "selections": (v2/*: any*/),
             "storageKey": null
           },
           {
@@ -178,6 +153,77 @@ v2 = [
               }
             ],
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "event",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "page",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "plateType",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "price",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "releaseDate",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "AssetCollection",
+            "kind": "LinkedField",
+            "name": "samplePagesCollection",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Asset",
+                "kind": "LinkedField",
+                "name": "items",
+                "plural": true,
+                "selections": (v2/*: any*/),
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "slug",
+            "storageKey": null
+          },
+          (v1/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "tag",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -192,7 +238,7 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "bookDetailQuery",
-    "selections": (v2/*: any*/),
+    "selections": (v3/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
@@ -201,19 +247,19 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "bookDetailQuery",
-    "selections": (v2/*: any*/)
+    "selections": (v3/*: any*/)
   },
   "params": {
-    "cacheID": "853dd4a40aa8bfad395c0ab26011a4ef",
+    "cacheID": "3849ae6d7e175f8f6ca2a7345dd19d83",
     "id": null,
     "metadata": {},
     "name": "bookDetailQuery",
     "operationKind": "query",
-    "text": "query bookDetailQuery(\n  $slug: String!\n) {\n  booksCollection(where: {slug: $slug}) {\n    items {\n      title\n      slug\n      page\n      releaseDate\n      event\n      plateType\n      price\n      cover {\n        title\n        url\n        width\n        height\n      }\n      description {\n        json\n      }\n    }\n  }\n}\n"
+    "text": "query bookDetailQuery(\n  $slug: String!\n) {\n  booksCollection(where: {slug: $slug}) {\n    items {\n      buy\n      cover {\n        title\n        url\n        width\n        height\n      }\n      description {\n        json\n      }\n      event\n      page\n      plateType\n      price\n      releaseDate\n      samplePagesCollection {\n        items {\n          title\n          url\n          width\n          height\n        }\n      }\n      slug\n      title\n      tag\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "b5e4ed48cd5aa45707fac49431428083";
+(node as any).hash = "0389571061dc13639067df1df230db98";
 
 export default node;

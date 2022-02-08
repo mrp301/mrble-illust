@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3f8c64cd45aa299bef06e6df24b45692>>
+ * @generated SignedSource<<662e2a1a52f05ee246db9a430feeb628>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,8 @@ export type booksQuery$data = {
     readonly items: ReadonlyArray<{
       readonly title: string | null;
       readonly slug: string | null;
+      readonly event: string | null;
+      readonly releaseDate: any | null;
       readonly cover: {
         readonly title: string | null;
         readonly url: string | null;
@@ -42,7 +44,13 @@ var v0 = {
 v1 = [
   {
     "alias": null,
-    "args": null,
+    "args": [
+      {
+        "kind": "Literal",
+        "name": "order",
+        "value": "releaseDate_DESC"
+      }
+    ],
     "concreteType": "BooksCollection",
     "kind": "LinkedField",
     "name": "booksCollection",
@@ -62,6 +70,20 @@ v1 = [
             "args": null,
             "kind": "ScalarField",
             "name": "slug",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "event",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "releaseDate",
             "storageKey": null
           },
           {
@@ -101,7 +123,7 @@ v1 = [
         "storageKey": null
       }
     ],
-    "storageKey": null
+    "storageKey": "booksCollection(order:\"releaseDate_DESC\")"
   }
 ];
 return {
@@ -122,16 +144,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "e1c0f3c5d63a8fd268ec6e95201c4571",
+    "cacheID": "7ef79f2bc646bc0a80b495f6694368e0",
     "id": null,
     "metadata": {},
     "name": "booksQuery",
     "operationKind": "query",
-    "text": "query booksQuery {\n  booksCollection {\n    items {\n      title\n      slug\n      cover {\n        title\n        url\n        width\n        height\n      }\n    }\n  }\n}\n"
+    "text": "query booksQuery {\n  booksCollection(order: releaseDate_DESC) {\n    items {\n      title\n      slug\n      event\n      releaseDate\n      cover {\n        title\n        url\n        width\n        height\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "53e3aa78ae421b94816d27efad9d5387";
+(node as any).hash = "6f80870ce2b1d9f4b8f5f0b139d7753e";
 
 export default node;

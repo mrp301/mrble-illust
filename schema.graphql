@@ -130,16 +130,18 @@ type Books implements Entry {
   sys: Sys!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): BooksLinkingCollections
-  slug(locale: String): String
-  title(locale: String): String
+  buy(locale: String): String
   cover(preview: Boolean, locale: String): Asset
   description(locale: String): BooksDescription
-  releaseDate(locale: String): DateTime
   event(locale: String): String
   page(locale: String): Int
   plateType(locale: String): String
-  samplePagesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): AssetCollection
   price(locale: String): Int
+  releaseDate(locale: String): DateTime
+  samplePagesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): AssetCollection
+  slug(locale: String): String
+  tag(locale: String): [String]
+  title(locale: String): String
 }
 
 type BooksCollection {
@@ -173,33 +175,17 @@ type BooksDescriptionLinks {
 input BooksFilter {
   sys: SysFilter
   contentfulMetadata: ContentfulMetadataFilter
-  slug_exists: Boolean
-  slug: String
-  slug_not: String
-  slug_in: [String]
-  slug_not_in: [String]
-  slug_contains: String
-  slug_not_contains: String
-  title_exists: Boolean
-  title: String
-  title_not: String
-  title_in: [String]
-  title_not_in: [String]
-  title_contains: String
-  title_not_contains: String
+  buy_exists: Boolean
+  buy: String
+  buy_not: String
+  buy_in: [String]
+  buy_not_in: [String]
+  buy_contains: String
+  buy_not_contains: String
   cover_exists: Boolean
   description_exists: Boolean
   description_contains: String
   description_not_contains: String
-  releaseDate_exists: Boolean
-  releaseDate: DateTime
-  releaseDate_not: DateTime
-  releaseDate_in: [DateTime]
-  releaseDate_not_in: [DateTime]
-  releaseDate_gt: DateTime
-  releaseDate_gte: DateTime
-  releaseDate_lt: DateTime
-  releaseDate_lte: DateTime
   event_exists: Boolean
   event: String
   event_not: String
@@ -223,7 +209,6 @@ input BooksFilter {
   plateType_not_in: [String]
   plateType_contains: String
   plateType_not_contains: String
-  samplePagesCollection_exists: Boolean
   price_exists: Boolean
   price: Int
   price_not: Int
@@ -233,6 +218,34 @@ input BooksFilter {
   price_gte: Int
   price_lt: Int
   price_lte: Int
+  releaseDate_exists: Boolean
+  releaseDate: DateTime
+  releaseDate_not: DateTime
+  releaseDate_in: [DateTime]
+  releaseDate_not_in: [DateTime]
+  releaseDate_gt: DateTime
+  releaseDate_gte: DateTime
+  releaseDate_lt: DateTime
+  releaseDate_lte: DateTime
+  samplePagesCollection_exists: Boolean
+  slug_exists: Boolean
+  slug: String
+  slug_not: String
+  slug_in: [String]
+  slug_not_in: [String]
+  slug_contains: String
+  slug_not_contains: String
+  tag_exists: Boolean
+  tag_contains_all: [String]
+  tag_contains_some: [String]
+  tag_contains_none: [String]
+  title_exists: Boolean
+  title: String
+  title_not: String
+  title_in: [String]
+  title_not_in: [String]
+  title_contains: String
+  title_not_contains: String
   OR: [BooksFilter]
   AND: [BooksFilter]
 }
@@ -242,12 +255,8 @@ type BooksLinkingCollections {
 }
 
 enum BooksOrder {
-  slug_ASC
-  slug_DESC
-  title_ASC
-  title_DESC
-  releaseDate_ASC
-  releaseDate_DESC
+  buy_ASC
+  buy_DESC
   event_ASC
   event_DESC
   page_ASC
@@ -256,6 +265,12 @@ enum BooksOrder {
   plateType_DESC
   price_ASC
   price_DESC
+  releaseDate_ASC
+  releaseDate_DESC
+  slug_ASC
+  slug_DESC
+  title_ASC
+  title_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
