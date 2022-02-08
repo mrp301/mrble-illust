@@ -74,6 +74,24 @@ export const BookDetail: WithLayout<VFC> = () => {
               </table>
             </div>
           </div>
+          <ul>
+            {bookData.tag.map((name) => (
+              <li key={name}>{name}</li>
+            ))}
+          </ul>
+          <ul>
+            {bookData.samplePagesCollection.items.map((sample) => (
+              <li key={sample.title}>
+                <Image
+                  src={sample.url}
+                  width={sample.width / 2}
+                  height={sample.height / 2}
+                  alt={sample.title}
+                  layout="intrinsic"
+                />
+              </li>
+            ))}
+          </ul>
         </Container>
       </Card>
     </>

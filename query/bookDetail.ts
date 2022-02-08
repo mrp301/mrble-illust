@@ -4,14 +4,7 @@ export default graphql`
   query bookDetailQuery($slug: String!) {
     booksCollection(where: { slug: $slug }) {
       items {
-        title
-        slug
-        page
-        releaseDate
-        event
-        page
-        plateType
-        price
+        buy
         cover {
           title
           url
@@ -21,6 +14,22 @@ export default graphql`
         description {
           json
         }
+        event
+        page
+        plateType
+        price
+        releaseDate
+        samplePagesCollection {
+          items {
+            title
+            url
+            width
+            height
+          }
+        }
+        slug
+        title
+        tag
       }
     }
   }
