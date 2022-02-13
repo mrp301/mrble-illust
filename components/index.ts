@@ -5,3 +5,8 @@ export * from "./Layout/";
 export * from "./Tab";
 export * from "./Container";
 export * from "./Card";
+export * from "./Heading";
+export * from "./Illust";
+export * from "./Book";
+export * from "./Button";
+export * from "./FadeIn";

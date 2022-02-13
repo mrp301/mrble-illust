@@ -6,7 +6,7 @@ import { maxWidth } from "../../../constants";
 export const mainStyles = {
   main: css({
     minHeight: "100vh",
-    background: "#fafafa",
+    background: "#fff",
   }),
   inner: css(
     mq({

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React, { VFC } from "react";
-import { mq } from "../../styles/mediaQueries";
+import { mq } from "@/styles/mediaQueries";
 import { BookListItem, BookListItemType } from "./BookListItem";
 
 type Props = {
@@ -22,18 +22,9 @@ const booksList = css(
   mq({
     display: "grid",
     gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
-    columnGap: [8, 12],
+    columnGap: [8, 16],
+    rowGap: [8, 16],
     margin: ["0 2px", "0 auto"],
-    li: {
-      marginBottom: [8, 12],
-      borderRadius: 4,
-      overflow: "hidden",
-      backgroundColor: "#fff",
-      "&:hover": {
-        cursor: "pointer",
-        opacity: 0.8,
-      },
-    },
   })
 );
 

@@ -15,7 +15,7 @@ const Footer: VFC = () => (
 const styles = {
   container: css({
     width: "100%",
-    padding: "30px 10px",
+    padding: "16px",
     borderTop: `1px solid ${color.gray[30]}`,
     display: "flex",
     justifyContent: "center",

@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React, { VFC } from "react";
-import { color } from "../../styles/theme";
-import { mq } from "../../styles/mediaQueries";
+import { mq } from "@/styles/mediaQueries";
 import Image from "next/image";
 import Link from "next/link";
+import { textStyles } from "@/styles";
+import { colors } from "@/constants";
 
 export type BookListItemType = {
   title: string;
@@ -35,11 +36,12 @@ const BookListItem: VFC<BookListItemType> = ({
             width={cover.width}
             height={cover.height}
             layout={"responsive"}
+            css={styles.cover}
           />
-          <div css={bookInfo}>
-            <div css={bookTitle}>{title}</div>
-            <div css={bookRelease}>{releaseDate}</div>
-            <div css={bookEvent}>{event}</div>
+          <div css={styles.body}>
+            <div css={[styles.title, textStyles.large]}>{title}</div>
+            <div css={[bookRelease, textStyles.xsmall]}>{releaseDate}</div>
+            <div css={[bookEvent, textStyles.xsmall]}>{event}</div>
           </div>
         </a>
       </Link>
@@ -49,38 +51,38 @@ const BookListItem: VFC<BookListItemType> = ({
 
 const styles = {
   container: css({
+    "&:hover": {
+      cursor: "pointer",
+      opacity: 0.8,
+    },
     a: {
       textDecoration: "none",
     },
   }),
+  cover: css({
+    borderRadius: 8,
+  }),
+  body: css(
+    mq({
+      display: ["none", "block"],
+      padding: "8px 0",
+    })
+  ),
+  title: css({
+    color: colors.black,
+    fontWeight: "bold",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  }),
 };
 
-const bookInfo = css(
-  mq({
-    display: ["none", "block"],
-    padding: "10px 10px 8px",
-  })
-);
-
-const bookTitle = css({
-  color: "#000",
-  fontWeight: "bold",
-  fontSize: 20,
-  marginBottom: 8,
-  "&:hover": {
-    textDecoration: "underline",
-  },
-});
-
 const bookRelease = css({
-  fontSize: 14,
-  color: color.gray[50],
-  marginBottom: 5,
+  color: colors.glay,
 });
 
 const bookEvent = css({
-  fontSize: 14,
-  color: color.gray[50],
+  color: colors.glay,
 });
 
 export { BookListItem };

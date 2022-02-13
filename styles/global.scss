@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic Pro", Yu Gothic,
-    sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
 * {
@@ -112,7 +111,8 @@ section {
   display: block;
 }
 body {
-  line-height: 1;
+  color: #1c1210;
+  line-height: 1.5;
 }
 ol,
 ul {
@@ -136,8 +136,4 @@ table {
 
 figure {
   line-height: 0;
-}
-
-img {
-  background-color: #c2c2c3;
 }
