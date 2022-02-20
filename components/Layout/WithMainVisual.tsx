@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
 import React, { VFC, ReactNode } from "react";
-import { css } from "@emotion/react";
 import { Footer } from "../Footer";
 import { MainVisual } from "../MainVisual/c99Winter/";
 import { mainStyles } from "./dependencies/style";

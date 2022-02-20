@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { VFC, ReactNode } from "react";
 import { css } from "@emotion/react";
 

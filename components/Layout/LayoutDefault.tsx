@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { VFC, ReactNode } from "react";
 import { Header } from "../Header";
 import { Footer } from "../Footer";

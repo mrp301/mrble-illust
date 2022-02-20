@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React, { VFC } from "react";
 import { css } from "@emotion/react";
 import { mq } from "@/styles/mediaQueries";
