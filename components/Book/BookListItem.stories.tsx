@@ -1,18 +1,29 @@
 import React from "react";
 import { ComponentStoryObj, ComponentMeta } from "@storybook/react";
 import { BookListItem } from "./BookListItem";
+import { css } from "@emotion/react";
+
+const container = css({
+  width: 200,
+});
 
 export default {
   component: BookListItem,
-  render: (args) => <BookListItem {...args} />,
+  render: (args) => (
+    <div css={container}>
+      <ul>
+        <BookListItem {...args} />
+      </ul>
+    </div>
+  ),
 } as ComponentMeta<typeof BookListItem>;
 
 export const Default: ComponentStoryObj<typeof BookListItem> = {
   args: {
-    title: "タイトル",
-    slug: "title",
+    title: "乙女TIME",
+    slug: "puri28",
     cover: {
-      url: "",
+      url: "/images/storybook/puri28_cover.jpeg",
       width: 724,
       height: 1024,
     },

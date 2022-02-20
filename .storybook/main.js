@@ -6,9 +6,14 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "storybook-addon-next",
+    "storybook-dark-mode",
   ],
   staticDirs: ["../public"],
   framework: "@storybook/react",
+  core: {
+    builder: "webpack5",
+  },
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
@@ -26,8 +31,6 @@ module.exports = {
       ...config.resolve.alias,
       "@": path.resolve(__dirname, "../"),
     };
-
-    console.log(config.module.rules);
 
     return config;
   },
