@@ -1,7 +1,7 @@
 import { useQuery } from "relay-hooks";
-import booksQuery from "../../query/books";
-import { booksQuery as BooksQuery } from "../../query/__generated__/booksQuery.graphql";
-import { BookListItemType } from "../../components/Book";
+import booksQuery from "@/query/books";
+import { booksQuery as BooksQuery } from "@/query/__generated__/booksQuery.graphql";
+import { BookListItemType } from "@/components/common/Book";
 import dayjs from "dayjs";
 
 type UseBookListData = () => {

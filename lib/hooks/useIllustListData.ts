@@ -1,7 +1,7 @@
 import { useQuery } from "relay-hooks";
 import illustrations from "@/query/illustrations";
 import { illustrationsQuery as IllustrationsQuery } from "@/query/__generated__/illustrationsQuery.graphql";
-import { IllustListItemType } from "@/components/";
+import { IllustListItemType } from "@/components/common";
 import dayjs from "dayjs";
 
 type UseIllustListData = () => {

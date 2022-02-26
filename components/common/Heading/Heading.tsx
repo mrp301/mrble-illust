@@ -23,12 +23,15 @@ const baseStyles = css({
 const tagStyles = {
   h1: css({
     fontSize: 48,
+    lineHeight: 1.2,
   }),
   h2: css({
     fontSize: 28,
+    lineHeight: 1.2,
   }),
   h3: css({
-    fontSize: 24,
+    fontSize: 20,
+    lineHeight: 1.2,
   }),
 };
 

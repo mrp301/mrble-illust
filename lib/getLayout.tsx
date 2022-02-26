@@ -1,5 +1,5 @@
 import React from "react";
-import { WithMainVisual, LayoutDefault } from "../components";
+import { WithMainVisual, LayoutDefault } from "@/components/common";
 import type { ReactElement } from "react";
 
 export const getLayout = (page: ReactElement): JSX.Element => {

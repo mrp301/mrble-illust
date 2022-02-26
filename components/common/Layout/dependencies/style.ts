@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
-import { mq } from "../../../styles/mediaQueries";
-import { maxWidth } from "../../../constants";
+import { mq } from "@/styles/mediaQueries";
+import { maxWidth } from "@/constants";
 
 export const mainStyles = {
   main: css({

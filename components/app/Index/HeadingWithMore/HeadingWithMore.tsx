@@ -1,9 +1,8 @@
 import React, { VFC, ComponentProps } from "react";
 import { css } from "@emotion/react";
 import { textStyles } from "@/styles";
-import { Heading } from "@/components";
+import { Heading, TextWithChevron } from "@/components/common";
 import Link from "next/link";
-import { colors } from "@/constants";
 
 type Props = {
   href: string;
@@ -14,7 +13,9 @@ const HeadingWithMore: VFC<Props> = ({ href, className, ...props }) => {
     <div css={styles.container} className={className}>
       <Heading {...props} />
       <Link href={href} passHref>
-        <a css={[styles.moreText, textStyles.medium]}>More</a>
+        <a css={[textStyles.medium, styles.text]}>
+          <TextWithChevron iconPosition="right">More</TextWithChevron>
+        </a>
       </Link>
     </div>
   );
@@ -26,27 +27,8 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
   }),
-  moreText: css({
-    display: "flex",
-    alignItems: "center",
-    textAlign: "right",
-    fontWeight: "bold",
-    color: colors.black,
+  text: css({
     textDecoration: "none",
-    "&:hover": {
-      textDecoration: "underline",
-    },
-    "&::after": {
-      marginLeft: 4,
-      boxSizing: "border-box",
-      content: "''",
-      width: 10,
-      height: 10,
-      borderTop: "solid 3px",
-      borderRight: "solid 3px",
-      borderColor: colors.black,
-      transform: "rotate(45deg)",
-    },
   }),
 };
 

@@ -1,7 +1,7 @@
 import React, { VFC } from "react";
 import { css } from "@emotion/react";
-import { color } from "../../styles/theme";
-import { layout } from "../../styles/layout";
+import { color } from "@/styles/theme";
+import { layout } from "@/styles/layout";
 
 const Footer: VFC = () => (
   <footer css={styles.container}>

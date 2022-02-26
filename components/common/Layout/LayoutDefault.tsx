@@ -11,7 +11,7 @@ type Props = {
 export const LayoutDefault: VFC<Props> = ({ children }) => {
   return (
     <>
-      <Header />
+      <Header bgColor="white" />
       <main css={mainStyles.main}>
         <Container vertical={16} horizontal={0}>
           <div css={mainStyles.inner}>{children}</div>

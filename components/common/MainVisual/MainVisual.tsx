@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import React, { VFC } from "react";
-import { layout } from "../../styles/layout";
-import { mq } from "../../styles/mediaQueries";
+import { layout } from "@/styles/layout";
+import { mq } from "@/styles/mediaQueries";
 
 export const MainVisual: VFC = () => {
   return (

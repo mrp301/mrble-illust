@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import React, { VFC } from "react";
-import { color } from "../../styles/theme";
-import { mq } from "../../styles/mediaQueries";
+import { color } from "@/styles/theme";
+import { mq } from "@/styles/mediaQueries";
 import { useTab } from "./dependencies";
 import { motion } from "framer-motion";
 

@@ -4,48 +4,54 @@ import { mq } from "@/styles/mediaQueries";
 import Image from "next/image";
 import { margin } from "@/styles/margin";
 import { textStyles, fontWeight } from "@/styles";
-import { Button } from "@/components";
+import { Button } from "../../Button";
+import { Header } from "../../Header";
 
 export const MainVisual: VFC = () => {
   return (
-    <div css={styles.conatiner}>
-      <div css={styles.illust}>
-        <Image
-          src="/images/main-visual/c99-winter/main-visual-illust.png"
-          width={745}
-          height={720}
-          alt="みらいちゃんとりんかちゃん"
-        />
-      </div>
-      <div css={styles.inner}>
-        <div css={styles.textContainer}>
-          <div css={styles.mainTitle}>mrble</div>
-          <div css={styles.subTitle}>illustration</div>
-          <p css={[description]}>過去に描いた同人誌やイラストをまとめたサイト。</p>
-          <div css={styles.cta}>
-            <p css={[description, textStyles.large, fontWeight.bold, margin.bottom[12]]}>
-              C99新刊販売中！
-            </p>
-            <a
-              href="https://mrble.booth.pm/items/3559083"
-              target="_blank"
-              rel="noreferrer"
-              tabIndex={-1}
-            >
-              <Button>購入ページへ</Button>
-            </a>
-          </div>
-        </div>
-        <div css={styles.meru}>
+    <>
+      <Header bgColor="none" css={styles.header} />
+      <div css={styles.conatiner}>
+        <div css={styles.illust}>
           <Image
-            src="/images/main-visual/c99-winter/main-visual-meru.png"
-            width={158}
-            height={245}
-            alt="めるめる"
+            src="/images/main-visual/c99-winter/main-visual-illust.png"
+            width={745}
+            height={720}
+            alt="みらいちゃんとりんかちゃん"
           />
         </div>
+        <div css={styles.inner}>
+          <div css={styles.textContainer}>
+            <div css={styles.mainTitle}>mrble</div>
+            <div css={styles.subTitle}>illustration</div>
+            <p css={[description]}>過去に描いた同人誌やイラストをまとめたサイト。</p>
+            <div css={styles.cta}>
+              <p
+                css={[description, textStyles.large, fontWeight.bold, margin.bottom[12]]}
+              >
+                C99新刊販売中！
+              </p>
+              <a
+                href="https://mrble.booth.pm/items/3559083"
+                target="_blank"
+                rel="noreferrer"
+                tabIndex={-1}
+              >
+                <Button>購入ページへ</Button>
+              </a>
+            </div>
+          </div>
+          <div css={styles.meru}>
+            <Image
+              src="/images/main-visual/c99-winter/main-visual-meru.png"
+              width={158}
+              height={245}
+              alt="めるめる"
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -55,6 +61,13 @@ const titleBackColor = {
 const height = ["auto", 720];
 
 const styles = {
+  header: css({
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    zIndex: 10,
+  }),
   conatiner: css(
     mq({
       position: "relative",

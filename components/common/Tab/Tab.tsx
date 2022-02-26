@@ -2,9 +2,9 @@ import { css } from "@emotion/react";
 import React, { VFC } from "react";
 import { AnimateSharedLayout } from "framer-motion";
 
-import { color } from "../../styles/theme";
-import { mq } from "../../styles/mediaQueries";
-import { maxWidth } from "../../constants";
+import { color } from "@/styles/theme";
+import { mq } from "@/styles/mediaQueries";
+import { maxWidth } from "@/constants";
 
 import { TabItem } from "./TabItem";
 import { categories, useTab } from "./dependencies";

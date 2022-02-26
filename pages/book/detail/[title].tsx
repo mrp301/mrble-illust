@@ -1,13 +1,16 @@
 import React, { VFC } from "react";
 import { css } from "@emotion/react";
 import Image from "next/image";
-import { CommonHead } from "../../../components/CommonHead";
-import { Card, Container } from "../../../components/";
-import { getLayoutDefault } from "../../../lib/getLayout";
-import { margin } from "../../../styles/margin";
-import { useGetQuery } from "../../../lib/hooks";
+import { CommonHead } from "@/components/CommonHead";
+import { Breadcrumb, Button, Heading, TextWithChevron } from "@/components/common";
+import { getLayoutDefault } from "@/lib/getLayout";
+import { margin } from "@/styles/margin";
+import { useGetQuery } from "@/lib/hooks";
 import Router from "next/router";
 import dayjs from "dayjs";
+import { mq } from "@/styles/mediaQueries";
+import Link from "next/link";
+import { textStyles } from "@/styles";
 
 import { useQuery } from "relay-hooks";
 import bookDetailQuery from "../../../query/bookDetail";
@@ -19,8 +22,10 @@ export const BookDetail: WithLayout<VFC> = () => {
     slug,
   });
 
-  if (!data?.booksCollection) return null;
-  if (!data.booksCollection.items[0]?.title) {
+  const isLoadiing = !data?.booksCollection || !slug;
+  if (isLoadiing) return null;
+
+  if (!data?.booksCollection?.items.length) {
     Router.push("/404");
     return null;
   }
@@ -28,78 +33,175 @@ export const BookDetail: WithLayout<VFC> = () => {
   const bookData = data.booksCollection.items[0];
 
   return (
-    <>
-      <CommonHead title="drawing" />
-      <Card>
-        <Container>
-          <div css={styles.container}>
-            <div css={margin.right[32]}>
+    <div css={styles.spContainer}>
+      <CommonHead title={bookData.title} />
+      <div css={[styles.navContainer, margin.bottom[16]]}>
+        <Link href="/" scroll={false} passHref>
+          <a>
+            <TextWithChevron iconPosition="left">Back</TextWithChevron>
+          </a>
+        </Link>
+      </div>
+      <div css={margin.bottom[32]}>
+        <div css={styles.container}>
+          <div css={styles.bookSampleContainer}>
+            <div css={margin.bottom[8]}>
               <Image
-                src={bookData.cover.url}
-                width={bookData.cover.width / 2}
-                height={bookData.cover.height / 2}
+                src={`${bookData.cover.url}?fit=pad&w=550&h=550&bg=rgb:cccccc`}
                 alt={bookData.cover.title}
-                layout="intrinsic"
+                width={550}
+                height={550}
+                layout="responsive"
               />
             </div>
-            <div>
-              <h2 css={margin.bottom[24]}>{bookData.title}</h2>
-              {/* <h3>■概要</h3> */}
-              {/* <p>{JSON.parse(bookData.description.json)}</p> */}
-              <h3 css={margin.bottom[24]}>■書籍情報</h3>
-              <table>
-                <tbody>
-                  <tr>
-                    <th>ページ数</th>
-                    <td>{bookData.page}</td>
-                  </tr>
-                  <tr>
-                    <th>版型</th>
-                    <td>{bookData.plateType}</td>
-                  </tr>
-                  <tr>
-                    <th>発売日</th>
-                    <td>{dayjs(bookData.releaseDate).format("YYYY年M月D日")}</td>
-                  </tr>
-                  <tr>
-                    <th>イベント</th>
-                    <td>{bookData.event}</td>
-                  </tr>
-                  <tr>
-                    <th>金額</th>
-                    <td>¥{bookData.price.toLocaleString()}</td>
-                  </tr>
-                </tbody>
-              </table>
+            <ul css={styles.bookSampleList}>
+              {bookData.samplePagesCollection.items.map((sample) => (
+                <li key={sample.title}>
+                  <Image
+                    src={`${sample.url}?fit=pad&w=130&h=130&bg=rgb:cccccc`}
+                    width={130}
+                    height={130}
+                    alt={sample.title}
+                    layout="responsive"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div css={styles.bookInfoConatiner}>
+            <div css={margin.bottom[32]}>
+              <Heading tag="h2" css={margin.bottom[12]}>
+                {bookData.title}
+              </Heading>
+              {bookData?.buy && (
+                <a href={bookData.buy} target="_blank" rel="noreferrer">
+                  <Button layout="fill">購入</Button>
+                </a>
+              )}
+            </div>
+
+            <div css={margin.bottom[32]}>
+              <Heading tag="h3" css={margin.bottom[16]}>
+                概要
+              </Heading>
+              <p css={[styles.description, textStyles.small]}>
+                {bookData.description.json?.content[0]?.content[0]?.value}
+              </p>
+            </div>
+
+            <div css={margin.bottom[32]}>
+              <Heading tag="h3" css={margin.bottom[16]}>
+                書籍情報
+              </Heading>
+              <dl css={[styles.bookInfoList, textStyles.medium]}>
+                <div>
+                  <dt>販売価格</dt>
+                  <dd>{bookData.price.toLocaleString()}円</dd>
+                </div>
+                <div>
+                  <dt>ページ数</dt>
+                  <dd>{bookData.page}</dd>
+                </div>
+                <div>
+                  <dt>版型</dt>
+                  <dd>{bookData.plateType}</dd>
+                </div>
+                <div>
+                  <dt>発売日</dt>
+                  <dd>{dayjs(bookData.releaseDate).format("YYYY年M月D日")}</dd>
+                </div>
+                <div>
+                  <dt>イベント</dt>
+                  <dd>{bookData.event}</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div css={margin.bottom[16]}>
+              <Heading tag="h3" css={margin.bottom[12]}>
+                タグ
+              </Heading>
+              <ul>
+                {bookData.tag.map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
+              </ul>
             </div>
           </div>
-          <ul>
-            {bookData.tag.map((name) => (
-              <li key={name}>{name}</li>
-            ))}
-          </ul>
-          <ul>
-            {bookData.samplePagesCollection.items.map((sample) => (
-              <li key={sample.title}>
-                <Image
-                  src={sample.url}
-                  width={sample.width / 2}
-                  height={sample.height / 2}
-                  alt={sample.title}
-                  layout="intrinsic"
-                />
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </Card>
-    </>
+        </div>
+      </div>
+      <Breadcrumb
+        items={[
+          {
+            slug: "/",
+            text: "トップ",
+          },
+          {
+            slug: "/books",
+            text: "書籍一覧",
+          },
+          {
+            slug: `/${bookData.slug}`,
+            text: bookData.title,
+          },
+        ]}
+      />
+    </div>
   );
 };
 
 const styles = {
-  container: css({
+  spContainer: css(
+    mq({
+      padding: ["0 16px", 0],
+    })
+  ),
+  navContainer: css({
     display: "flex",
+    alignItems: "center",
+  }),
+  container: css(
+    mq({
+      display: "flex",
+      alignItems: "flex-start",
+      flexDirection: ["column", "row"],
+    })
+  ),
+  bookSampleContainer: css(
+    mq({
+      flexShrink: 0,
+      // position: ["static", "sticky"],
+      // top: 0,
+      width: ["100%", 550],
+      marginRight: [0, 32],
+    })
+  ),
+  bookSampleList: css({
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: 8,
+  }),
+  bookInfoConatiner: css({
+    width: "100%",
+  }),
+  price: css({
+    fontWeight: "bold",
+    color: "#ff5266",
+  }),
+  description: css({
+    whiteSpace: "pre-wrap",
+  }),
+  bookInfoList: css({
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gap: "12px 4px",
+    "> *": {
+      display: "contents",
+    },
+    dt: {
+      fontWeight: "bold",
+    },
   }),
 };
 
