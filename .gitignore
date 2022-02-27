@@ -36,3 +36,6 @@ firebase-debug.log
 ui-debug.log
 mrble-illust-firebase-adminsdk.json
 firebase-export-1633186660879tJpBuG/
+
+# gh-pages
+build
