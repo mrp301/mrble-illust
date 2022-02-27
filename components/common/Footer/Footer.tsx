@@ -2,11 +2,45 @@ import React, { VFC } from "react";
 import { css } from "@emotion/react";
 import { color } from "@/styles/theme";
 import { layout } from "@/styles/layout";
+import { textStyles } from "@/styles";
+import dayjs from "dayjs";
 
 const Footer: VFC = () => (
   <footer css={styles.container}>
     <div css={styles.inner}>
-      <small css={styles.small}>@mrble Inc 2021</small>
+      <small css={[styles.small, textStyles.small]}>
+        @ {dayjs().format("YYYY")} mrble Inc.
+      </small>
+      <ul css={[styles.links, textStyles.small]}>
+        <li>
+          <a href="https://twitter.com/tubdaka616" target="_blank" rel="noreferrer">
+            twitter
+          </a>
+        </li>
+        <li>
+          <a href="https://www.pixiv.net/users/4898502" target="_blank" rel="noreferrer">
+            pixiv
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/mrp301/mrble-illust"
+            target="_blank"
+            rel="noreferrer"
+          >
+            github
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.figma.com/file/3m4E1CxUPMut14YtqDZG8J/mrble-illust?node-id=0%3A1"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Figma
+          </a>
+        </li>
+      </ul>
     </div>
   </footer>
 );
@@ -24,12 +58,28 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    width: "100%",
     maxWidth: layout.maxWidth,
     margin: "0 auto",
   }),
   small: css({
-    fontSize: 14,
     color: color.gray[60],
+  }),
+  links: css({
+    display: "flex",
+    justifyContent: "flex-end",
+    li: {
+      "&:not(:last-child)": {
+        marginRight: 32,
+      },
+    },
+    a: {
+      color: color.gray[60],
+      textDecoration: "none",
+      "&:hover": {
+        textDecoration: "underline",
+      },
+    },
   }),
 };
 
