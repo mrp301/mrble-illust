@@ -40,6 +40,15 @@ const Footer: VFC = () => (
             Figma
           </a>
         </li>
+        <li>
+          <a
+            href="https://mrp301.github.io/mrble-illust/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Storybook
+          </a>
+        </li>
       </ul>
     </div>
   </footer>

@@ -4,6 +4,10 @@
 
 https://www.figma.com/file/3m4E1CxUPMut14YtqDZG8J/mrble-illust?node-id=0%3A1
 
+## Storybook
+
+https://mrp301.github.io/mrble-illust/
+
 ## .prettierrc
 
 - trailingComma:ES5で有効な末尾のカンマ(オブジェクト、配列など) つける
