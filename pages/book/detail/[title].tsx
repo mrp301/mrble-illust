@@ -2,7 +2,13 @@ import React, { VFC } from "react";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import { CommonHead } from "@/components/CommonHead";
-import { Breadcrumb, Button, Heading, TextWithChevron } from "@/components/common";
+import {
+  Breadcrumb,
+  Button,
+  Heading,
+  TextWithChevron,
+  TagList,
+} from "@/components/common";
 import { getLayoutDefault } from "@/lib/getLayout";
 import { margin } from "@/styles/margin";
 import { useGetQuery } from "@/lib/hooks";
@@ -11,10 +17,10 @@ import dayjs from "dayjs";
 import { mq } from "@/styles/mediaQueries";
 import Link from "next/link";
 import { textStyles } from "@/styles";
-
 import { useQuery } from "relay-hooks";
 import bookDetailQuery from "../../../query/bookDetail";
 import { bookDetailQuery as BookDetailQuery } from "../../../query/__generated__/bookDetailQuery.graphql";
+import { chooseTagColor } from "@/lib/chooseTagColor";
 
 export const BookDetail: WithLayout<VFC> = () => {
   const slug = useGetQuery("title");
@@ -41,6 +47,14 @@ export const BookDetail: WithLayout<VFC> = () => {
             <TextWithChevron iconPosition="left">Back</TextWithChevron>
           </a>
         </Link>
+      </div>
+      <div css={margin.bottom[32]}>
+        <TagList
+          list={bookData.tag.map((name) => ({
+            children: name,
+            color: chooseTagColor(name),
+          }))}
+        />
       </div>
       <div css={margin.bottom[32]}>
         <div css={styles.container}>
@@ -76,7 +90,9 @@ export const BookDetail: WithLayout<VFC> = () => {
               </Heading>
               {bookData?.buy && (
                 <a href={bookData.buy} target="_blank" rel="noreferrer">
-                  <Button layout="fill">購入</Button>
+                  <Button priority="primary" layout="fill">
+                    購入ページへ
+                  </Button>
                 </a>
               )}
             </div>
@@ -116,17 +132,6 @@ export const BookDetail: WithLayout<VFC> = () => {
                   <dd>{bookData.event}</dd>
                 </div>
               </dl>
-            </div>
-
-            <div css={margin.bottom[16]}>
-              <Heading tag="h3" css={margin.bottom[12]}>
-                タグ
-              </Heading>
-              <ul>
-                {bookData.tag.map((name) => (
-                  <li key={name}>{name}</li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
@@ -175,6 +180,7 @@ const styles = {
       // top: 0,
       width: ["100%", 550],
       marginRight: [0, 32],
+      marginBottom: [32, 0],
     })
   ),
   bookSampleList: css({

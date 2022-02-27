@@ -12,3 +12,4 @@ export * from "./Button";
 export * from "./FadeIn";
 export * from "./TextWithChevron";
 export * from "./Breadcrumb";
+export * from "./Tag";
