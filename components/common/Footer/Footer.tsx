@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { color } from "@/styles/theme";
 import { layout } from "@/styles/layout";
 import { textStyles } from "@/styles";
+import { mq } from "@/styles/mediaQueries";
 import dayjs from "dayjs";
 
 const Footer: VFC = () => (
@@ -55,22 +56,27 @@ const Footer: VFC = () => (
 );
 
 const styles = {
-  container: css({
-    width: "100%",
-    padding: "16px",
-    borderTop: `1px solid ${color.gray[30]}`,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  }),
-  inner: css({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
-    maxWidth: layout.maxWidth,
-    margin: "0 auto",
-  }),
+  container: css(
+    mq({
+      width: "100%",
+      padding: "16px",
+      borderTop: `1px solid ${color.gray[30]}`,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    })
+  ),
+  inner: css(
+    mq({
+      display: "flex",
+      alignItems: ["flex-start", "center"],
+      justifyContent: "space-between",
+      flexFlow: ["column", "row"],
+      width: "100%",
+      maxWidth: layout.maxWidth,
+      margin: "0 auto",
+    })
+  ),
   small: css({
     color: color.gray[60],
   }),
