@@ -1,6 +1,5 @@
 import React, { VFC } from "react";
 import { css } from "@emotion/react";
-import Image from "next/image";
 import { CommonHead } from "@/components/CommonHead";
 import {
   Breadcrumb,
@@ -8,6 +7,7 @@ import {
   Heading,
   TextWithChevron,
   TagList,
+  BookViewer,
 } from "@/components/common";
 import { getLayoutDefault } from "@/lib/getLayout";
 import { margin } from "@/styles/margin";
@@ -18,9 +18,10 @@ import { mq } from "@/styles/mediaQueries";
 import Link from "next/link";
 import { textStyles } from "@/styles";
 import { useQuery } from "relay-hooks";
-import bookDetailQuery from "../../../query/bookDetail";
-import { bookDetailQuery as BookDetailQuery } from "../../../query/__generated__/bookDetailQuery.graphql";
+import bookDetailQuery from "@/query/bookDetail";
+import { bookDetailQuery as BookDetailQuery } from "@/query/__generated__/bookDetailQuery.graphql";
 import { chooseTagColor } from "@/lib/chooseTagColor";
+import { color } from "@/styles/theme";
 
 export const BookDetail: WithLayout<VFC> = () => {
   const slug = useGetQuery("title");
@@ -58,38 +59,12 @@ export const BookDetail: WithLayout<VFC> = () => {
       </div>
       <div css={margin.bottom[32]}>
         <div css={styles.container}>
-          <div css={styles.bookSampleContainer}>
-            <div css={margin.bottom[8]}>
-              <Image
-                src={`${bookData.cover.url}?fit=pad&w=550&h=550&bg=rgb:cccccc`}
-                alt={bookData.cover.title}
-                width={550}
-                height={550}
-                layout="responsive"
-              />
-            </div>
-            <ul css={styles.bookSampleList}>
-              {bookData.samplePagesCollection.items.map((sample) => (
-                <li key={sample.title}>
-                  <Image
-                    src={`${sample.url}?fit=pad&w=130&h=130&bg=rgb:cccccc`}
-                    width={130}
-                    height={130}
-                    alt={sample.title}
-                    layout="responsive"
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-
+          <BookViewer fragmentRef={data.booksCollection.items[0]} />
           <div css={styles.bookInfoConatiner}>
             <div css={margin.bottom[32]}>
-              <Heading tag="h2" css={margin.bottom[12]}>
-                {bookData.title}
-              </Heading>
+              <h2 css={[styles.title, margin.bottom[24]]}>{bookData.title}</h2>
               {bookData?.buy && (
-                <a href={bookData.buy} target="_blank" rel="noreferrer">
+                <a href={bookData.buy} target="_blank" rel="noreferrer" tabIndex={-1}>
                   <Button priority="primary" layout="fill">
                     購入ページへ
                   </Button>
@@ -110,7 +85,7 @@ export const BookDetail: WithLayout<VFC> = () => {
               <Heading tag="h3" css={margin.bottom[16]}>
                 書籍情報
               </Heading>
-              <dl css={[styles.bookInfoList, textStyles.medium]}>
+              <dl css={[styles.bookInfoList, textStyles.small]}>
                 <div>
                   <dt>販売価格</dt>
                   <dd>{bookData.price.toLocaleString()}円</dd>
@@ -173,21 +148,13 @@ const styles = {
       flexDirection: ["column", "row"],
     })
   ),
-  bookSampleContainer: css(
+  title: css(
     mq({
-      flexShrink: 0,
-      // position: ["static", "sticky"],
-      // top: 0,
-      width: ["100%", 550],
-      marginRight: [0, 32],
-      marginBottom: [32, 0],
+      fontSize: [28, 32],
+      fontWeight: "bold",
+      lineHeight: 1.2,
     })
   ),
-  bookSampleList: css({
-    display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gap: 8,
-  }),
   bookInfoConatiner: css({
     width: "100%",
   }),
@@ -200,13 +167,13 @@ const styles = {
   }),
   bookInfoList: css({
     display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gap: "12px 4px",
+    gridTemplateColumns: "1fr 2fr",
+    gap: "4px 4px",
     "> *": {
       display: "contents",
     },
     dt: {
-      fontWeight: "bold",
+      color: color.gray[60],
     },
   }),
 };

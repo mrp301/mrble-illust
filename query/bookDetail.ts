@@ -5,12 +5,6 @@ export default graphql`
     booksCollection(where: { slug: $slug }) {
       items {
         buy
-        cover {
-          title
-          url
-          width
-          height
-        }
         description {
           json
         }
@@ -19,17 +13,10 @@ export default graphql`
         plateType
         price
         releaseDate
-        samplePagesCollection {
-          items {
-            title
-            url
-            width
-            height
-          }
-        }
         slug
         title
         tag
+        ...BookViewerArea_fragment
       }
     }
   }

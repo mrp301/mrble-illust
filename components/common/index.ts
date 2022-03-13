@@ -13,3 +13,4 @@ export * from "./FadeIn";
 export * from "./TextWithChevron";
 export * from "./Breadcrumb";
 export * from "./Tag";
+export * from "./BookViewer";
