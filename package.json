@@ -28,6 +28,7 @@
     "@types/relay-runtime": "^13.0.1",
     "axios": "^0.21.1",
     "dayjs": "^1.10.7",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "facepaint": "^1.2.1",
     "file-loader": "^6.2.0",
     "firebase": "^8.4.2",
