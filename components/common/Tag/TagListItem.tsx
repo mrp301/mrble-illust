@@ -23,5 +23,6 @@ const styles = {
       fontWeight: "bold",
       padding: "8px 24px",
       backgroundColor: colors[color],
+      whiteSpace: "nowrap",
     }),
 };

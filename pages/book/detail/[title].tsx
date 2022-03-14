@@ -9,6 +9,7 @@ import {
   TagList,
   BookViewer,
 } from "@/components/common";
+import { RecommendBookList } from "@/components/app";
 import { getLayoutDefault } from "@/lib/getLayout";
 import { margin } from "@/styles/margin";
 import { useGetQuery } from "@/lib/hooks";
@@ -40,16 +41,19 @@ export const BookDetail: WithLayout<VFC> = () => {
   const bookData = data.booksCollection.items[0];
 
   return (
-    <div css={styles.spContainer}>
-      <CommonHead title={bookData.title} />
-      <div css={[styles.navContainer, margin.bottom[16]]}>
-        <Link href="/" scroll={false} passHref>
-          <a>
-            <TextWithChevron iconPosition="left">Back</TextWithChevron>
-          </a>
-        </Link>
+    <>
+      <div css={styles.spContainer}>
+        <CommonHead title={bookData.title} />
+        <div css={[styles.navContainer, margin.bottom[16]]}>
+          <Link href="/" scroll={false} passHref>
+            <a>
+              <TextWithChevron iconPosition="left">Back</TextWithChevron>
+            </a>
+          </Link>
+        </div>
       </div>
-      <div css={margin.bottom[32]}>
+
+      <div css={[styles.spTagListContainer, margin.bottom[32]]}>
         <TagList
           list={bookData.tag.map((name) => ({
             children: name,
@@ -57,77 +61,89 @@ export const BookDetail: WithLayout<VFC> = () => {
           }))}
         />
       </div>
-      <div css={margin.bottom[32]}>
-        <div css={styles.container}>
-          <BookViewer fragmentRef={data.booksCollection.items[0]} />
-          <div css={styles.bookInfoConatiner}>
-            <div css={margin.bottom[32]}>
-              <h2 css={[styles.title, margin.bottom[24]]}>{bookData.title}</h2>
-              {bookData?.buy && (
-                <a href={bookData.buy} target="_blank" rel="noreferrer" tabIndex={-1}>
-                  <Button priority="primary" layout="fill">
-                    購入ページへ
-                  </Button>
-                </a>
-              )}
-            </div>
+      <div css={styles.spContainer}>
+        <div
+          css={mq({
+            marginBottom: [32, 64],
+          })}
+        >
+          <div css={styles.container}>
+            <BookViewer fragmentRef={data.booksCollection.items[0]} />
+            <div css={styles.bookInfoConatiner}>
+              <div css={margin.bottom[32]}>
+                <h2 css={[styles.title, margin.bottom[24]]}>{bookData.title}</h2>
+                {bookData?.buy && (
+                  <a href={bookData.buy} target="_blank" rel="noreferrer" tabIndex={-1}>
+                    <Button priority="primary" layout="fill">
+                      購入ページへ
+                    </Button>
+                  </a>
+                )}
+              </div>
 
-            <div css={margin.bottom[32]}>
-              <Heading tag="h3" css={margin.bottom[16]}>
-                概要
-              </Heading>
-              <p css={[styles.description, textStyles.small]}>
-                {bookData.description.json?.content[0]?.content[0]?.value}
-              </p>
-            </div>
+              <div css={margin.bottom[32]}>
+                <Heading tag="h3" css={margin.bottom[16]}>
+                  概要
+                </Heading>
+                <p css={[styles.description, textStyles.small]}>
+                  {bookData.description.json?.content[0]?.content[0]?.value}
+                </p>
+              </div>
 
-            <div css={margin.bottom[32]}>
-              <Heading tag="h3" css={margin.bottom[16]}>
-                書籍情報
-              </Heading>
-              <dl css={[styles.bookInfoList, textStyles.small]}>
-                <div>
-                  <dt>販売価格</dt>
-                  <dd>{bookData.price.toLocaleString()}円</dd>
-                </div>
-                <div>
-                  <dt>ページ数</dt>
-                  <dd>{bookData.page}</dd>
-                </div>
-                <div>
-                  <dt>版型</dt>
-                  <dd>{bookData.plateType}</dd>
-                </div>
-                <div>
-                  <dt>発売日</dt>
-                  <dd>{dayjs(bookData.releaseDate).format("YYYY年M月D日")}</dd>
-                </div>
-                <div>
-                  <dt>イベント</dt>
-                  <dd>{bookData.event}</dd>
-                </div>
-              </dl>
+              <div css={margin.bottom[32]}>
+                <Heading tag="h3" css={margin.bottom[16]}>
+                  書籍情報
+                </Heading>
+                <dl css={[styles.bookInfoList, textStyles.small]}>
+                  <div>
+                    <dt>販売価格</dt>
+                    <dd>{bookData.price.toLocaleString()}円</dd>
+                  </div>
+                  <div>
+                    <dt>ページ数</dt>
+                    <dd>{bookData.page}</dd>
+                  </div>
+                  <div>
+                    <dt>版型</dt>
+                    <dd>{bookData.plateType}</dd>
+                  </div>
+                  <div>
+                    <dt>発売日</dt>
+                    <dd>{dayjs(bookData.releaseDate).format("YYYY年M月D日")}</dd>
+                  </div>
+                  <div>
+                    <dt>イベント</dt>
+                    <dd>{bookData.event}</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </div>
         </div>
+        <Heading tag="h3" css={margin.bottom[16]}>
+          関連作品
+        </Heading>
+        <div css={margin.bottom[32]}>
+          <RecommendBookList fragmentRef={data.recommendBooksCollection} />
+        </div>
+        <Breadcrumb
+          items={[
+            {
+              slug: "/",
+              text: "トップ",
+            },
+            {
+              slug: "/books",
+              text: "書籍一覧",
+            },
+            {
+              slug: `/${bookData.slug}`,
+              text: bookData.title,
+            },
+          ]}
+        />
       </div>
-      <Breadcrumb
-        items={[
-          {
-            slug: "/",
-            text: "トップ",
-          },
-          {
-            slug: "/books",
-            text: "書籍一覧",
-          },
-          {
-            slug: `/${bookData.slug}`,
-            text: bookData.title,
-          },
-        ]}
-      />
-    </div>
+    </>
   );
 };
 
@@ -135,6 +151,11 @@ const styles = {
   spContainer: css(
     mq({
       padding: ["0 16px", 0],
+    })
+  ),
+  spTagListContainer: css(
+    mq({
+      paddingLeft: [16, 0],
     })
   ),
   navContainer: css({

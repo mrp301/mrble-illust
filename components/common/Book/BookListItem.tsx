@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { textStyles } from "@/styles";
 import { colors } from "@/constants";
+import dayjs from "dayjs";
 
 export type BookListItemType = {
   title: string;
@@ -39,7 +40,9 @@ const BookListItem: VFC<BookListItemType> = ({
           />
           <div css={styles.body}>
             <div css={[styles.title, textStyles.large]}>{title}</div>
-            <div css={[bookRelease, textStyles.xsmall]}>{releaseDate}</div>
+            <div css={[bookRelease, textStyles.xsmall]}>
+              {dayjs(releaseDate).format("YYYY年M月D日")}
+            </div>
             <div css={[bookEvent, textStyles.xsmall]}>{event}</div>
           </div>
         </a>

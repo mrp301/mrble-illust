@@ -7,6 +7,7 @@ import { useBookViewer } from "./useBookViewer";
 import { colors } from "@/constants";
 import { graphql, useFragment } from "react-relay";
 import { BookViewerArea_fragment$key } from "./__generated__/BookViewerArea_fragment.graphql";
+import { ChevronRight, ChevronLeft } from "@mui/icons-material";
 
 const fragment = graphql`
   fragment BookViewerArea_fragment on Books {
@@ -61,15 +62,23 @@ const BookViewer: VFC<Props> = ({ fragmentRef }) => {
   return (
     <div css={styles.bookSampleContainer}>
       <div css={[styles.BookViewerAreaConatiner, margin.bottom[8]]}>
-        <button onClick={handleBack} css={styles.controleButton("prev")}>
-          prev
+        <button
+          onClick={handleBack}
+          css={styles.controleButton("prev")}
+          aria-label="前のページへ"
+        >
+          <ChevronLeft sx={{ color: "#fff" }} fontSize="large" />
         </button>
         <BookViewerArea
           src={bookViewerData[currentPage].url}
           alt={bookViewerData[currentPage].title}
         />
-        <button onClick={handleNext} css={styles.controleButton("next")}>
-          next
+        <button
+          onClick={handleNext}
+          css={styles.controleButton("next")}
+          aria-label="次のページへ"
+        >
+          <ChevronRight sx={{ color: "#fff" }} fontSize="large" />
         </button>
       </div>
       <ul css={styles.bookSampleList}>
@@ -77,7 +86,10 @@ const BookViewer: VFC<Props> = ({ fragmentRef }) => {
           <li
             key={title}
             onClick={() => handleChange(index)}
-            onKeyDown={() => handleChange(index)}
+            onKeyDown={(e) => {
+              if (e.code !== "Enter") return;
+              handleChange(index);
+            }}
             tabIndex={0}
             css={styles.bookSampleListItem(index === currentPage)}
           >
@@ -124,7 +136,7 @@ const styles = {
       borderRadius: 4,
       borderStyle: "solid",
       borderWidth: 2,
-      borderColor: isActive ? colors.blue : "rgba(0, 0, 0, 0)",
+      borderColor: isActive ? colors.primary.main : "rgba(0, 0, 0, 0)",
       "&:hover": {
         cursor: "pointer",
         opacity: 0.8,
@@ -137,11 +149,16 @@ const styles = {
       top: 0,
       left: type === "prev" ? 0 : "auto",
       right: type === "next" ? 0 : "auto",
-      width: "10%",
+      width: "35px",
       height: "100%",
       cursor: "pointer",
+      padding: 0,
       border: "none",
       background: "none",
+      textAlign: "center",
+      "&:hover": {
+        background: "rgba(255, 255, 255, 0.2)",
+      },
     }),
 };
 

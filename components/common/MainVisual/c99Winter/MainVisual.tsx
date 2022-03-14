@@ -37,7 +37,7 @@ export const MainVisual: VFC = () => {
                 rel="noreferrer"
                 tabIndex={-1}
               >
-                <Button>購入ページへ</Button>
+                <Button priority="primary">購入ページへ</Button>
               </a>
             </div>
           </div>

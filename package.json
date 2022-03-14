@@ -21,6 +21,7 @@
     "@google-cloud/firestore": "^4.10.0",
     "@jamesives/github-pages-deploy-action": "^4.2.5",
     "@material/image-list": "^13.0.0",
+    "@mui/icons-material": "^5.5.0",
     "@mui/material": "^5.0.3",
     "@storybook/builder-webpack5": "^6.4.19",
     "@storybook/manager-webpack5": "^6.4.19",

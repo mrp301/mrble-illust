@@ -28,7 +28,10 @@ const priorityStyle = {
     backgroundColor: colors.black,
   }),
   primary: css({
-    backgroundColor: colors.purple,
+    backgroundColor: colors.primary.main,
+    "&:hover": {
+      backgroundColor: colors.primary.light,
+    },
   }),
 } as const;
 

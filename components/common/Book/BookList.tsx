@@ -20,7 +20,7 @@ const BookList: VFC<Props> = ({ bookListData }) => {
 const booksList = css(
   mq({
     display: "grid",
-    gridTemplateColumns: ["repeat(2, 1fr)", "repeat(3, 1fr)"],
+    gridTemplateColumns: ["repeat(2, 1fr)", "repeat(4, 1fr)"],
     columnGap: [8, 16],
     rowGap: [8, 16],
     margin: ["0 2px", "0 auto"],

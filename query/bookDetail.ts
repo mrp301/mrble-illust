@@ -19,5 +19,11 @@ export default graphql`
         ...BookViewerArea_fragment
       }
     }
+    recommendBooksCollection: booksCollection(
+      where: { slug_not: $slug }
+      order: releaseDate_DESC
+    ) {
+      ...RecommendBookList_fragment
+    }
   }
 `;

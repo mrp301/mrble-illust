@@ -8,4 +8,9 @@ export const colors = {
   blue: "#9492E9",
   green: "#54C566",
   yellow: "#DADC74",
+  primary: {
+    main: "#C51162",
+    light: "#FD558F",
+    dark: "#8E0038",
+  },
 } as const;
