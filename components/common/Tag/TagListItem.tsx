@@ -3,11 +3,9 @@ import { css } from "@emotion/react";
 import { textStyles } from "@/styles";
 import { colors } from "@/constants";
 
-type ColorKey = keyof Omit<typeof colors, "black">;
-
 export type Props = {
   children: ReactNode;
-  color: ColorKey;
+  color: string;
 };
 
 export const TagListItem: VFC<Props> = ({ children, color }) => {
@@ -15,7 +13,7 @@ export const TagListItem: VFC<Props> = ({ children, color }) => {
 };
 
 const styles = {
-  container: (color: ColorKey) =>
+  container: (color: string) =>
     css({
       borderRadius: 4,
       textAlign: "center",
