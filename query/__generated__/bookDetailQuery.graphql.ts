@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<349c33758f52afed20f51366f05afe72>>
+ * @generated SignedSource<<d1e63b2b22de687149f6dd879bdfb08e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -31,6 +31,9 @@ export type bookDetailQuery$data = {
       readonly tag: ReadonlyArray<string | null> | null;
       readonly " $fragmentSpreads": FragmentRefs<"BookViewerArea_fragment">;
     } | null>;
+  } | null;
+  readonly recommendBooksCollection: {
+    readonly " $fragmentSpreads": FragmentRefs<"RecommendBookList_fragment">;
   } | null;
 };
 export type bookDetailQueryResponse = bookDetailQuery$data;
@@ -142,14 +145,33 @@ v11 = {
   "storageKey": null
 },
 v12 = [
-  (v10/*: any*/),
   {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "url",
-    "storageKey": null
+    "kind": "Literal",
+    "name": "order",
+    "value": "releaseDate_DESC"
+  },
+  {
+    "fields": [
+      {
+        "kind": "Variable",
+        "name": "slug_not",
+        "variableName": "slug"
+      }
+    ],
+    "kind": "ObjectValue",
+    "name": "where"
   }
+],
+v13 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "url",
+  "storageKey": null
+},
+v14 = [
+  (v10/*: any*/),
+  (v13/*: any*/)
 ];
 return {
   "fragment": {
@@ -191,6 +213,22 @@ return {
               }
             ],
             "storageKey": null
+          }
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": "recommendBooksCollection",
+        "args": (v12/*: any*/),
+        "concreteType": "BooksCollection",
+        "kind": "LinkedField",
+        "name": "booksCollection",
+        "plural": false,
+        "selections": [
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "RecommendBookList_fragment"
           }
         ],
         "storageKey": null
@@ -238,7 +276,7 @@ return {
                 "kind": "LinkedField",
                 "name": "cover",
                 "plural": false,
-                "selections": (v12/*: any*/),
+                "selections": (v14/*: any*/),
                 "storageKey": null
               },
               {
@@ -256,7 +294,60 @@ return {
                     "kind": "LinkedField",
                     "name": "items",
                     "plural": true,
-                    "selections": (v12/*: any*/),
+                    "selections": (v14/*: any*/),
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": "recommendBooksCollection",
+        "args": (v12/*: any*/),
+        "concreteType": "BooksCollection",
+        "kind": "LinkedField",
+        "name": "booksCollection",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Books",
+            "kind": "LinkedField",
+            "name": "items",
+            "plural": true,
+            "selections": [
+              (v10/*: any*/),
+              (v9/*: any*/),
+              (v4/*: any*/),
+              (v8/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Asset",
+                "kind": "LinkedField",
+                "name": "cover",
+                "plural": false,
+                "selections": [
+                  (v10/*: any*/),
+                  (v13/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "width",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "height",
                     "storageKey": null
                   }
                 ],
@@ -271,16 +362,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "866c7732925a187248c03114213cd5b5",
+    "cacheID": "da49dc0a1c2008a85352ae4840ad0054",
     "id": null,
     "metadata": {},
     "name": "bookDetailQuery",
     "operationKind": "query",
-    "text": "query bookDetailQuery(\n  $slug: String!\n) {\n  booksCollection(where: {slug: $slug}) {\n    items {\n      buy\n      description {\n        json\n      }\n      event\n      page\n      plateType\n      price\n      releaseDate\n      slug\n      title\n      tag\n      ...BookViewerArea_fragment\n    }\n  }\n}\n\nfragment BookViewerArea_fragment on Books {\n  cover {\n    title\n    url\n  }\n  samplePagesCollection {\n    items {\n      title\n      url\n    }\n  }\n}\n"
+    "text": "query bookDetailQuery(\n  $slug: String!\n) {\n  booksCollection(where: {slug: $slug}) {\n    items {\n      buy\n      description {\n        json\n      }\n      event\n      page\n      plateType\n      price\n      releaseDate\n      slug\n      title\n      tag\n      ...BookViewerArea_fragment\n    }\n  }\n  recommendBooksCollection: booksCollection(where: {slug_not: $slug}, order: releaseDate_DESC) {\n    ...RecommendBookList_fragment\n  }\n}\n\nfragment BookViewerArea_fragment on Books {\n  cover {\n    title\n    url\n  }\n  samplePagesCollection {\n    items {\n      title\n      url\n    }\n  }\n}\n\nfragment RecommendBookList_fragment on BooksCollection {\n  items {\n    title\n    slug\n    event\n    releaseDate\n    cover {\n      title\n      url\n      width\n      height\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "ec2fff5201a24f36edc275e23c704674";
+(node as any).hash = "0de12562eaa181696a5e8e56ca875bea";
 
 export default node;
