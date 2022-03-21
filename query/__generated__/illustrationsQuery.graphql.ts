@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<63eecc82b29c0554e6488a9bb6a01b70>>
+ * @generated SignedSource<<f3c0217f61b146708685c00fb50a1138>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,10 +9,13 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type illustrationsQuery$variables = {};
+export type illustrationsQuery$variables = {
+  limit: number;
+};
 export type illustrationsQueryVariables = illustrationsQuery$variables;
 export type illustrationsQuery$data = {
   readonly illustrationsCollection: {
+    readonly total: number;
     readonly items: ReadonlyArray<{
       readonly createDate: any | null;
       readonly image: {
@@ -35,8 +38,20 @@ export type illustrationsQuery = {
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "limit"
+  }
+],
+v1 = [
+  {
     "alias": null,
     "args": [
+      {
+        "kind": "Variable",
+        "name": "limit",
+        "variableName": "limit"
+      },
       {
         "kind": "Literal",
         "name": "order",
@@ -48,6 +63,13 @@ var v0 = [
     "name": "illustrationsCollection",
     "plural": false,
     "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "total",
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": null,
@@ -120,37 +142,37 @@ var v0 = [
         "storageKey": null
       }
     ],
-    "storageKey": "illustrationsCollection(order:\"createDate_DESC\")"
+    "storageKey": null
   }
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "illustrationsQuery",
-    "selections": (v0/*: any*/),
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "illustrationsQuery",
-    "selections": (v0/*: any*/)
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "470c7631e2e23065cf8809e5c7f6b403",
+    "cacheID": "9df4974f27005ce3511712e6397f8969",
     "id": null,
     "metadata": {},
     "name": "illustrationsQuery",
     "operationKind": "query",
-    "text": "query illustrationsQuery {\n  illustrationsCollection(order: createDate_DESC) {\n    items {\n      createDate\n      image {\n        url\n        width\n        height\n      }\n      opusNo\n      title\n      tag\n    }\n  }\n}\n"
+    "text": "query illustrationsQuery(\n  $limit: Int!\n) {\n  illustrationsCollection(order: createDate_DESC, limit: $limit) {\n    total\n    items {\n      createDate\n      image {\n        url\n        width\n        height\n      }\n      opusNo\n      title\n      tag\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "b986d1755ab1de3d7952b7118e8f78e7";
+(node as any).hash = "fdeb6c36f6dae8bd14ae8887f1645827";
 
 export default node;
