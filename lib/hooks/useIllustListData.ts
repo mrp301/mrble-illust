@@ -4,13 +4,14 @@ import { illustrationsQuery as IllustrationsQuery } from "@/query/__generated__/
 import { IllustListItemType } from "@/components/common";
 import dayjs from "dayjs";
 
-type UseIllustListData = () => {
+type UseIllustListData = (limit: number) => {
   illustListData: IllustListItemType[] | undefined;
   isLoading: boolean;
+  total: number;
 };
 
-export const useIllustListData: UseIllustListData = () => {
-  const { data } = useQuery<IllustrationsQuery>(illustrations);
+export const useIllustListData: UseIllustListData = (limit) => {
+  const { data } = useQuery<IllustrationsQuery>(illustrations, { limit });
   const isLoading = !data?.illustrationsCollection;
 
   const illustListData: IllustListItemType[] = data?.illustrationsCollection.items.map(
@@ -23,8 +24,9 @@ export const useIllustListData: UseIllustListData = () => {
         height: illustData.image.height,
       },
       createDate: dayjs(illustData.createDate).format("YYYY年M月D日"),
+      createYear: dayjs(illustData.createDate).format("YYYY年"),
     })
   );
 
-  return { illustListData, isLoading };
+  return { illustListData, isLoading, total: data?.illustrationsCollection.total };
 };

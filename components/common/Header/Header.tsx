@@ -28,7 +28,7 @@ const Header: VFC<Props> = ({ bgColor, ...props }) => {
         <nav css={styles.navListContainer}>
           <ul css={styles.navList}>
             <li>
-              <Link href="/books" passHref>
+              <Link href="/" passHref>
                 <a>Books</a>
               </Link>
             </li>

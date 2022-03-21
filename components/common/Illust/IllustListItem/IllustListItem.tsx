@@ -2,7 +2,8 @@ import { css } from "@emotion/react";
 import React, { VFC } from "react";
 import { mq } from "@/styles/mediaQueries";
 import Image from "next/image";
-import { textStyles, fontWeight } from "@/styles";
+import { textStyles } from "@/styles";
+import { color } from "@/styles/theme";
 
 type Props = {
   title: string;
@@ -12,49 +13,62 @@ type Props = {
     width: number;
     height: number;
   };
+  createDate: string;
+  createYear: string;
 };
 
 export type IllustListItemType = Props;
 
+const IMG_HEIGHT = 220;
+
 const IllustListItem: VFC<Props> = ({ title, opusNo, cover }) => {
+  const width = Math.floor((cover.width * IMG_HEIGHT) / cover.height);
   return (
-    <li>
+    <li css={styles.container(width)}>
       <div css={styles.imageContainer}>
         <Image
-          src={`${cover.url}?f=faces&fit=fill&w=408&h=408`}
+          src={`${cover.url}?fit=fill&w=${width * 2}&h=${IMG_HEIGHT * 2}`}
           alt={`${opusNo}_${title}`}
-          width={204}
-          height={204}
-          css={styles.image}
+          width={width}
+          height={IMG_HEIGHT}
           layout="responsive"
+          blurDataURL={`${cover.url}?fit=thumb`}
+          placeholder="blur"
+          lazyBoundary={`${IMG_HEIGHT * 2}px`}
         />
       </div>
-      <div css={[styles.body, textStyles.large]}>
-        <div css={[textStyles.medium, styles.opusNo]}>{opusNo}</div>
-        <div css={[fontWeight.bold]}>{title}</div>
+      <div css={[styles.body, styles.body, textStyles.small]}>
+        <div css={styles.opusNo}>{opusNo}</div>
+        <div css={styles.title}>{title}</div>
       </div>
     </li>
   );
 };
 
 const styles = {
-  imageContainer: css(
-    mq({
-      overflow: "hidden",
-      borderRadius: 8,
-      height: ["auto", 204],
-    })
-  ),
-  image: css({
-    objectFit: "cover",
+  container: (width: number) =>
+    css({
+      width,
+      flexGrow: width,
+    }),
+  imageContainer: css({
+    overflow: "hidden",
+    borderRadius: 8,
+    border: `1px solid ${color.gray[30]}`,
   }),
   body: css(
     mq({
       display: ["none", "flex"],
-      alignItems: "center",
-      padding: "8px 0",
+      alignItems: "flex-start",
+      padding: "4px 0 8px",
     })
   ),
+  title: css({
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    fontWeight: "bold",
+  }),
   opusNo: css({
     marginRight: 4,
   }),

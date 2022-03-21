@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { textStyles } from "@/styles";
 import { colors } from "@/constants";
+import { color } from "@/styles/theme";
 import dayjs from "dayjs";
 
 export type BookListItemType = {
@@ -30,14 +31,17 @@ const BookListItem: VFC<BookListItemType> = ({
     <li css={styles.container}>
       <Link href={`/book/detail/${slug}`} passHref>
         <a>
-          <Image
-            src={cover.url}
-            alt={title}
-            width={cover.width}
-            height={cover.height}
-            layout={"responsive"}
-            css={styles.cover}
-          />
+          <div css={styles.coverContainer}>
+            <Image
+              src={cover.url}
+              alt={title}
+              width={cover.width}
+              height={cover.height}
+              layout={"responsive"}
+              blurDataURL={`${cover.url}?fit=thumb`}
+              placeholder="blur"
+            />
+          </div>
           <div css={styles.body}>
             <div css={[styles.title, textStyles.large]}>{title}</div>
             <div css={[bookRelease, textStyles.xsmall]}>
@@ -61,8 +65,10 @@ const styles = {
       textDecoration: "none",
     },
   }),
-  cover: css({
+  coverContainer: css({
     borderRadius: 8,
+    border: `1px solid ${color.gray[30]}`,
+    overflow: "hidden",
   }),
   body: css(
     mq({

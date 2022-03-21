@@ -20,10 +20,14 @@ const IllustList: VFC<Props> = ({ illustList }) => {
 const styles = {
   conatiner: css(
     mq({
-      display: "grid",
-      gridTemplateColumns: ["repeat(2, 1fr)", "repeat(auto-fit, minmax(204px, 4fr))"],
-      columnGap: [8, 16],
-      rowGap: [16, 32],
+      display: "flex",
+      flexWrap: "wrap",
+      columnGap: 8,
+      rowGap: 8,
+      "&::after": {
+        content: "''",
+        flexGrow: 999999999,
+      },
     })
   ),
 };

@@ -8,6 +8,7 @@ import {
   TextWithChevron,
   TagList,
   BookViewer,
+  SpContainer,
 } from "@/components/common";
 import { RecommendBookList } from "@/components/app";
 import { getLayoutDefault } from "@/lib/getLayout";
@@ -53,13 +54,15 @@ export const BookDetail: WithLayout<VFC> = () => {
         </div>
       </div>
 
-      <div css={[styles.spTagListContainer, margin.bottom[32]]}>
-        <TagList
-          list={bookData.tag.map((name) => ({
-            children: name,
-            color: chooseTagColor(name),
-          }))}
-        />
+      <div css={margin.bottom[32]}>
+        <SpContainer vertical={0} horizontal={16}>
+          <TagList
+            list={bookData.tag.map((name) => ({
+              children: name,
+              color: chooseTagColor(name),
+            }))}
+          />
+        </SpContainer>
       </div>
       <div css={styles.spContainer}>
         <div
@@ -151,11 +154,6 @@ const styles = {
   spContainer: css(
     mq({
       padding: ["0 16px", 0],
-    })
-  ),
-  spTagListContainer: css(
-    mq({
-      paddingLeft: [16, 0],
     })
   ),
   navContainer: css({
