@@ -8,7 +8,7 @@ import { color } from "@/styles/theme";
 type Props = {
   title: string;
   opusNo: number;
-  cover: {
+  image: {
     url: string;
     width: number;
     height: number;
@@ -21,18 +21,18 @@ export type IllustListItemType = Props;
 
 const IMG_HEIGHT = 220;
 
-const IllustListItem: VFC<Props> = ({ title, opusNo, cover }) => {
-  const width = Math.floor((cover.width * IMG_HEIGHT) / cover.height);
+const IllustListItem: VFC<Props> = ({ title, opusNo, image }) => {
+  const width = Math.floor((image.width * IMG_HEIGHT) / image.height);
   return (
     <li css={styles.container(width)}>
       <div css={styles.imageContainer}>
         <Image
-          src={`${cover.url}?fit=fill&w=${width * 2}&h=${IMG_HEIGHT * 2}`}
+          src={`${image.url}?fit=fill&w=${width * 2}&h=${IMG_HEIGHT * 2}`}
           alt={`${opusNo}_${title}`}
           width={width}
           height={IMG_HEIGHT}
           layout="responsive"
-          blurDataURL={`${cover.url}?fit=thumb`}
+          blurDataURL={`${image.url}?fit=thumb`}
           placeholder="blur"
           lazyBoundary={`${IMG_HEIGHT * 2}px`}
         />

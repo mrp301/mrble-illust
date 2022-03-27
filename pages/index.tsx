@@ -3,17 +3,61 @@ import { css } from "@emotion/react";
 import { mq } from "@/styles/mediaQueries";
 import { CommonHead } from "../components/CommonHead";
 import { getLayout } from "../lib/getLayout";
-import { Heading, BookList, IllustList, Container } from "@/components/common";
-import { useBookListData, useIllustListData } from "@/lib/hooks";
+import {
+  Heading,
+  BookList,
+  IllustList,
+  Container,
+  IllustListItemType,
+} from "@/components/common";
 import { HeadingWithMore } from "@/components/app/Index/HeadingWithMore/HeadingWithMore";
 import { margin, textStyles, fontWeight } from "@/styles";
+import { GetStaticProps } from "next";
+import { fetchQuery } from "react-relay";
+import { initEnvironment } from "@/relay/fetchGraphQL";
+import { illustrationsQuery as IllustrationsQuery } from "@/query/__generated__/illustrationsQuery.graphql";
+import booksQuery from "@/query/books";
+import { booksQuery as BooksQuery } from "@/query/__generated__/booksQuery.graphql";
+import illustrations from "@/query/illustrations";
+import { convertIllustListData } from "@/lib";
+import { BookListItemType } from "@/components/common/Book";
 
-const Index: WithLayout<VFC> = () => {
-  const { bookListData, isLoading: isBookLoading } = useBookListData();
-  const { illustListData, isLoading: isIllustLoading, total } = useIllustListData(10);
+type Props = {
+  bookListData: BookListItemType[];
+  illustListData: IllustListItemType[];
+  totalCount: number;
+};
 
-  if (isBookLoading || isIllustLoading) return null;
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const environment = initEnvironment();
+  const { illustrationsCollection } = await fetchQuery<IllustrationsQuery>(
+    environment,
+    illustrations,
+    {
+      limit: 10,
+    }
+  ).toPromise();
+  const { booksCollection } = await fetchQuery<BooksQuery>(
+    environment,
+    booksQuery,
+    {}
+  ).toPromise();
 
+  const illustListData = convertIllustListData(illustrationsCollection.items);
+  const bookListData: BookListItemType[] = booksCollection.items.map((item) => ({
+    ...item,
+  }));
+
+  return {
+    props: {
+      bookListData,
+      illustListData,
+      totalCount: illustrationsCollection.total,
+    },
+  };
+};
+
+const Index: WithLayout<VFC<Props>> = ({ bookListData, illustListData, totalCount }) => {
   return (
     <>
       <CommonHead title="Home" />
@@ -42,7 +86,7 @@ const Index: WithLayout<VFC> = () => {
         <Container vertical={48} horizontal={0}>
           <HeadingWithMore tag="h2" href="/illustrations/" css={margin.bottom[32]}>
             <a>
-              <span css={textStyles.large}>Illustrations({total})</span>
+              <span css={textStyles.large}>Illustrations({totalCount})</span>
             </a>
           </HeadingWithMore>
           <IllustList illustList={illustListData} />

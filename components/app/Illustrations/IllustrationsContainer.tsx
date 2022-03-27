@@ -8,7 +8,6 @@ type Props = {
 };
 
 export const IllustrationsContainer: VFC<Props> = ({ illustList }) => {
-  // TDDO:Server側へ処理移動させる
   const splitYear = [...new Set(illustList.map(({ createYear }) => createYear))];
   const convertImageData: IllustListItemType[][] = splitYear.reduce((acc, cur) => {
     return [...acc, illustList.filter(({ createYear }) => createYear === cur)];

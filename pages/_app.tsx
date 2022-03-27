@@ -3,8 +3,8 @@ import { NextPage } from "next";
 import { AppProps } from "next/app";
 import "../styles/global.scss";
 import "../styles/MasonryImageList.scss";
-import { RelayEnvironmentProvider } from "relay-hooks";
-import Environment from "../relay/RelayEnvironment";
+import { ReactRelayContext } from "react-relay";
+import { useEnvironment } from "@/relay/fetchGraphQL";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -15,12 +15,13 @@ type AppPropsWithLayout = AppProps & {
 };
 
 const App: VFC<AppPropsWithLayout> = ({ Component, pageProps }) => {
+  const environment = useEnvironment(pageProps.initialRecords);
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <RelayEnvironmentProvider environment={Environment}>
+    <ReactRelayContext.Provider value={{ environment }}>
       {getLayout(<Component {...pageProps} />)}
-    </RelayEnvironmentProvider>
+    </ReactRelayContext.Provider>
   );
 };
 
