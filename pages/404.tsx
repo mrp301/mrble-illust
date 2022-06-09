@@ -1,7 +1,7 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { getLayoutDefault } from "../lib/getLayout";
 
-const Custom404: WithLayout<VFC> = () => {
+const Custom404: WithLayout<FC> = () => {
   return <p>404 Not Fond</p>;
 };
 

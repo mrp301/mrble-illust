@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import { layout } from "@/styles/layout";
 import { colors } from "@/constants";
@@ -16,7 +16,7 @@ const backgroundColor = {
   none: "rgba(0, 0, 0, 0)",
 } as const;
 
-const Header: VFC<Props> = ({ bgColor, ...props }) => {
+const Header: FC<Props> = ({ bgColor, ...props }) => {
   return (
     <header css={styles.container(bgColor)} {...props}>
       <div css={styles.inner}>

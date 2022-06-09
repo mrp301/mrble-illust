@@ -1,4 +1,4 @@
-import React, { VFC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { css } from "@emotion/react";
 import { textStyles } from "@/styles";
 import { colors } from "@/constants";
@@ -8,7 +8,7 @@ export type Props = {
   color: string;
 };
 
-export const TagListItem: VFC<Props> = ({ children, color }) => {
+export const TagListItem: FC<Props> = ({ children, color }) => {
   return <div css={[styles.container(color), textStyles.small]}>{children}</div>;
 };
 

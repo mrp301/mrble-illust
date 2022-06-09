@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { css } from "@emotion/react";
 import { color } from "@/styles/theme";
 import { layout } from "@/styles/layout";
@@ -6,7 +6,7 @@ import { textStyles } from "@/styles";
 import { mq } from "@/styles/mediaQueries";
 import dayjs from "dayjs";
 
-const Footer: VFC = () => (
+const Footer: FC = () => (
   <footer css={styles.container}>
     <div css={styles.inner}>
       <small css={[styles.small, textStyles.small]}>

@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { CommonHead } from "@/components/CommonHead";
 import { SpContainer, IllustListItemType } from "@/components/common";
 import { getLayoutDefault } from "@/lib/getLayout";
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   };
 };
 
-const Illustrations: WithLayout<VFC<Props>> = ({ illustListData }) => {
+const Illustrations: WithLayout<FC<Props>> = ({ illustListData }) => {
   return (
     <>
       <CommonHead title="イラスト一覧" />

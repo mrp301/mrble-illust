@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { mq } from "@/styles/mediaQueries";
 import { BookListItem, BookListItemType } from "./BookListItem";
 
@@ -7,7 +7,7 @@ type Props = {
   bookListData: BookListItemType[];
 };
 
-const BookList: VFC<Props> = ({ bookListData }) => {
+const BookList: FC<Props> = ({ bookListData }) => {
   return (
     <ul css={booksList}>
       {bookListData.map((bookData) => (

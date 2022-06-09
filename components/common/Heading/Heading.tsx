@@ -1,4 +1,4 @@
-import React, { VFC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { css } from "@emotion/react";
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 } & JSX.IntrinsicElements["h1"];
 
-const Heading: VFC<Props> = ({ tag, children, ...props }) => {
+const Heading: FC<Props> = ({ tag, children, ...props }) => {
   const Tag = tag;
   return (
     <Tag css={[baseStyles, tagStyles[tag]]} {...props}>

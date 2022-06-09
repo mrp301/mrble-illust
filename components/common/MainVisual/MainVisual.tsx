@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { layout } from "@/styles/layout";
 import { mq } from "@/styles/mediaQueries";
 
-export const MainVisual: VFC = () => {
+export const MainVisual: FC = () => {
   return (
     <div css={mainVisual}>
       <div css={inner}>

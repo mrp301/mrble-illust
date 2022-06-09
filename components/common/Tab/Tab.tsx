@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { AnimateSharedLayout } from "framer-motion";
 
 import { color } from "@/styles/theme";
@@ -11,7 +11,7 @@ import { categories, useTab } from "./dependencies";
 
 type Props = JSX.IntrinsicElements["div"];
 
-const Tab: VFC<Props> = ({ ...props }) => {
+const Tab: FC<Props> = ({ ...props }) => {
   const { selected } = useTab();
 
   return (

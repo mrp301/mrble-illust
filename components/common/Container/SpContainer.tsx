@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { mq } from "@/styles/mediaQueries";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   vertical?: number;
 };
 
-const SpContainer: VFC<Props> = ({ children, horizontal = 16, vertical = 16 }) => (
+const SpContainer: FC<Props> = ({ children, horizontal = 16, vertical = 16 }) => (
   <div css={styles.container(horizontal, vertical)}>{children}</div>
 );
 

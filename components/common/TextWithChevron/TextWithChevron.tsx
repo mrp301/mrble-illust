@@ -1,4 +1,4 @@
-import React, { VFC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { css } from "@emotion/react";
 import { textStyles } from "@/styles";
 import { colors } from "@/constants";
@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const TextWithChevron: VFC<Props> = ({ iconPosition, children, ...props }) => {
+export const TextWithChevron: FC<Props> = ({ iconPosition, children, ...props }) => {
   return (
     <div {...props}>
       <span css={[styles.text(iconPosition), textStyles.medium]}>{children}</span>

@@ -1,4 +1,4 @@
-import React, { VFC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
 
 const variants = {
@@ -16,7 +16,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const FadeIn: VFC<Props> = ({ children }) => {
+export const FadeIn: FC<Props> = ({ children }) => {
   return (
     <motion.div
       variants={variants}

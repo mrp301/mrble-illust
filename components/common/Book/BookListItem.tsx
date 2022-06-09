@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { mq } from "@/styles/mediaQueries";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,7 +20,7 @@ export type BookListItemType = {
   releaseDate: string;
 };
 
-const BookListItem: VFC<BookListItemType> = ({
+const BookListItem: FC<BookListItemType> = ({
   title,
   slug,
   cover,

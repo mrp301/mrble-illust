@@ -1,4 +1,4 @@
-import React, { VFC, ReactElement, ReactNode } from "react";
+import React, { FC, ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
 import "../styles/global.scss";
@@ -14,7 +14,7 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-const App: VFC<AppPropsWithLayout> = ({ Component, pageProps }) => {
+const App: FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
   const environment = useEnvironment(pageProps.initialRecords);
   const getLayout = Component.getLayout ?? ((page) => page);
 

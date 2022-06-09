@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { IllustList } from "@/components/common";
 import { IllustListItemType, Heading } from "@/components/common";
 import { margin, textStyles } from "@/styles";
@@ -7,7 +7,7 @@ type Props = {
   illustList: IllustListItemType[];
 };
 
-export const IllustrationsContainer: VFC<Props> = ({ illustList }) => {
+export const IllustrationsContainer: FC<Props> = ({ illustList }) => {
   const splitYear = [...new Set(illustList.map(({ createYear }) => createYear))];
   const convertImageData: IllustListItemType[][] = splitYear.reduce((acc, cur) => {
     return [...acc, illustList.filter(({ createYear }) => createYear === cur)];

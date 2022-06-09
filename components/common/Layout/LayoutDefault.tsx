@@ -1,4 +1,4 @@
-import React, { VFC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
 import { Container } from "../Container";
@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const LayoutDefault: VFC<Props> = ({ children }) => {
+export const LayoutDefault: FC<Props> = ({ children }) => {
   return (
     <>
       <Header bgColor="white" />

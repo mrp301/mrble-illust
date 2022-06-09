@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { mq } from "@/styles/mediaQueries";
 import Image from "next/image";
 import { margin } from "@/styles/margin";
@@ -7,7 +7,7 @@ import { textStyles, fontWeight } from "@/styles";
 import { Button } from "../../Button";
 import { Header } from "../../Header";
 
-export const MainVisual: VFC = () => {
+export const MainVisual: FC = () => {
   return (
     <>
       <Header bgColor="none" css={styles.header} />

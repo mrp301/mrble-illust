@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { mq } from "@/styles/mediaQueries";
 import { IllustListItem, IllustListItemType } from "../IllustListItem";
 
@@ -7,7 +7,7 @@ type Props = {
   illustList: IllustListItemType[];
 };
 
-const IllustList: VFC<Props> = ({ illustList }) => {
+const IllustList: FC<Props> = ({ illustList }) => {
   return (
     <ul css={styles.conatiner}>
       {illustList.map((illust) => (

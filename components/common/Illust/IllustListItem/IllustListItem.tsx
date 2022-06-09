@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { mq } from "@/styles/mediaQueries";
 import Image from "next/image";
 import { textStyles } from "@/styles";
@@ -21,7 +21,7 @@ export type IllustListItemType = Props;
 
 const IMG_HEIGHT = 220;
 
-const IllustListItem: VFC<Props> = ({ title, opusNo, image }) => {
+const IllustListItem: FC<Props> = ({ title, opusNo, image }) => {
   const width = Math.floor((image.width * IMG_HEIGHT) / image.height);
   return (
     <li css={styles.container(width)}>
