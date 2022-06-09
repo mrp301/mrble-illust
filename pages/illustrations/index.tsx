@@ -6,7 +6,7 @@ import { IllustrationsContainer } from "@/components/app";
 import { GetStaticProps } from "next";
 import { fetchQuery } from "react-relay";
 import { initEnvironment } from "@/relay/fetchGraphQL";
-import illustrations from "@/query/illustrations";
+import illustrationsQuery from "@/query/illustrations";
 import { illustrationsQuery as IllustrationsQuery } from "@/query/__generated__/illustrationsQuery.graphql";
 import { convertIllustListData } from "@/lib";
 
@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const environment = initEnvironment();
   const { illustrationsCollection } = await fetchQuery<IllustrationsQuery>(
     environment,
-    illustrations,
+    illustrationsQuery,
     {
       limit: 100,
     }
