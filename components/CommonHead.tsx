@@ -1,11 +1,11 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 
 type Props = {
   title: string;
 };
 
-export const CommonHead: VFC<Props> = ({ title }) => {
+export const CommonHead: FC<Props> = ({ title }) => {
   return (
     <Head>
       <title>mrble-illustration | {title}</title>

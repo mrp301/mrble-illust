@@ -1,4 +1,4 @@
-import React, { VFC, ComponentProps } from "react";
+import React, { FC, ComponentProps } from "react";
 import { css } from "@emotion/react";
 import { textStyles } from "@/styles";
 import { Heading, TextWithChevron } from "@/components/common";
@@ -8,7 +8,7 @@ type Props = {
   href: string;
 } & ComponentProps<typeof Heading>;
 
-const HeadingWithMore: VFC<Props> = ({ href, className, ...props }) => {
+const HeadingWithMore: FC<Props> = ({ href, className, ...props }) => {
   return (
     <div css={styles.container} className={className}>
       <Heading {...props} />

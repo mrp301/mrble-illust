@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { BookList } from "../../../common";
 import { graphql, useFragment } from "react-relay";
 import { RecommendBookList_fragment$key } from "./__generated__/RecommendBookList_fragment.graphql";
@@ -24,7 +24,7 @@ type Props = {
   fragmentRef: RecommendBookList_fragment$key;
 };
 
-const RecommendBookList: VFC<Props> = ({ fragmentRef }) => {
+const RecommendBookList: FC<Props> = ({ fragmentRef }) => {
   const bookListData = useFragment(fragment, fragmentRef);
   const convertBookListData = bookListData.items.map((item) => ({
     ...item,

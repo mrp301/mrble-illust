@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { css } from "@emotion/react";
 import { Props as TagListItemType, TagListItem } from "./TagListItem";
 import { mq } from "@/styles/mediaQueries";
@@ -7,7 +7,7 @@ type Props = {
   list: TagListItemType[];
 };
 
-export const TagList: VFC<Props> = ({ list }) => {
+export const TagList: FC<Props> = ({ list }) => {
   return (
     <ul css={styles.tagList}>
       {list.map((item, index) => (

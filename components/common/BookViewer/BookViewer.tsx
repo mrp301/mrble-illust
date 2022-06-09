@@ -1,4 +1,4 @@
-import React, { VFC, memo } from "react";
+import React, { FC, memo } from "react";
 import { css } from "@emotion/react";
 import { mq } from "@/styles/mediaQueries";
 import { margin } from "@/styles/margin";
@@ -35,7 +35,7 @@ type BookViewerArea = {
 };
 
 // eslint-disable-next-line react/display-name
-const BookViewerArea: VFC<BookViewerArea> = memo(({ src, alt }) => (
+const BookViewerArea: FC<BookViewerArea> = memo(({ src, alt }) => (
   <div css={styles.BookViewerArea}>
     <Image
       src={`${src}?fit=pad&w=550&h=550&bg=rgb:cccccc`}
@@ -51,7 +51,7 @@ type Props = {
   fragmentRef: BookViewerArea_fragment$key;
 };
 
-const BookViewer: VFC<Props> = ({ fragmentRef }) => {
+const BookViewer: FC<Props> = ({ fragmentRef }) => {
   const { cover, samplePagesCollection } = useFragment(fragment, fragmentRef);
   const { bookViewerData, currentPage, handleChange, handleNext, handleBack } =
     useBookViewer({

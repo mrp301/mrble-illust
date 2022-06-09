@@ -3,7 +3,11 @@
     "baseUrl": ".",
     "target": "es5",
     "downlevelIteration": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -15,11 +19,25 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "typeRoots": ["node_modules/@types", "types"],
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "types/**/*", "**/*.ts", "**/*.tsx", "lib/bookData.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "types/**/*",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/bookData.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

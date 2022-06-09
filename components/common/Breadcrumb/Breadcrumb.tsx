@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { css } from "@emotion/react";
 import Link from "next/link";
 import { textStyles } from "@/styles";
@@ -10,7 +10,7 @@ type Props = {
   }[];
 };
 
-export const Breadcrumb: VFC<Props> = ({ items }) => {
+export const Breadcrumb: FC<Props> = ({ items }) => {
   return (
     <nav aria-label="Breadcrumb">
       <ul css={styles.container}>

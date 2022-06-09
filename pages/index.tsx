@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { css } from "@emotion/react";
 import { mq } from "@/styles/mediaQueries";
 import { CommonHead } from "../components/CommonHead";
@@ -57,7 +57,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   };
 };
 
-const Index: WithLayout<VFC<Props>> = ({ bookListData, illustListData, totalCount }) => {
+const Index: WithLayout<FC<Props>> = ({ bookListData, illustListData, totalCount }) => {
   return (
     <>
       <CommonHead title="Home" />

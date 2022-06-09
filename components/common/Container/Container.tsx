@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
@@ -7,7 +7,7 @@ type Props = {
   vertical?: number;
 };
 
-const Container: VFC<Props> = ({ children, horizontal = 16, vertical = 16 }) => (
+const Container: FC<Props> = ({ children, horizontal = 16, vertical = 16 }) => (
   <div css={styles.container(horizontal, vertical)}>{children}</div>
 );
 

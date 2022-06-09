@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { VFC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { colors } from "@/constants";
 
 type Layout = "fill" | "auto";
@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode;
 } & JSX.IntrinsicElements["button"];
 
-const Button: VFC<Props> = ({
+const Button: FC<Props> = ({
   priority = "normal",
   children,
   layout = "auto",

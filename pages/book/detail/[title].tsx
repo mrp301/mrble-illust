@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { css } from "@emotion/react";
 import { CommonHead } from "@/components/CommonHead";
 import {
@@ -25,7 +25,7 @@ import { bookDetailQuery as BookDetailQuery } from "@/query/__generated__/bookDe
 import { chooseTagColor } from "@/lib/chooseTagColor";
 import { color } from "@/styles/theme";
 
-export const BookDetail: WithLayout<VFC> = () => {
+export const BookDetail: WithLayout<FC> = () => {
   const slug = useGetQuery("title");
   const { data } = useQuery<BookDetailQuery>(bookDetailQuery, {
     slug,
