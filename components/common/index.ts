@@ -14,3 +14,4 @@ export * from "./TextWithChevron";
 export * from "./Breadcrumb";
 export * from "./Tag";
 export * from "./BookViewer";
+export * from "./ThemeProvider";

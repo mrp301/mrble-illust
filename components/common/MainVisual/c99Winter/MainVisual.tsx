@@ -10,7 +10,7 @@ import { Header } from "../../Header";
 export const MainVisual: FC = () => {
   return (
     <>
-      <Header bgColor="none" css={styles.header} />
+      <Header bgColor={false} css={styles.header} />
       <div css={styles.conatiner}>
         <div css={styles.illust}>
           <Image

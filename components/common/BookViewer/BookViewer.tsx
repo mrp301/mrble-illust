@@ -4,10 +4,11 @@ import { mq } from "@/styles/mediaQueries";
 import { margin } from "@/styles/margin";
 import Image from "next/image";
 import { useBookViewer } from "./useBookViewer";
-import { colors } from "@/constants";
 import { graphql, useFragment } from "react-relay";
 import { BookViewerArea_fragment$key } from "./__generated__/BookViewerArea_fragment.graphql";
 import { ChevronRight, ChevronLeft } from "@mui/icons-material";
+import { useTheme } from "@/components/common";
+import { Theme } from "@/types/theme";
 
 const fragment = graphql`
   fragment BookViewerArea_fragment on Books {
@@ -35,17 +36,21 @@ type BookViewerArea = {
 };
 
 // eslint-disable-next-line react/display-name
-const BookViewerArea: FC<BookViewerArea> = memo(({ src, alt }) => (
-  <div css={styles.BookViewerArea}>
-    <Image
-      src={`${src}?fit=pad&w=550&h=550&bg=rgb:cccccc`}
-      alt={alt}
-      width={550}
-      height={550}
-      layout="responsive"
-    />
-  </div>
-));
+const BookViewerArea: FC<BookViewerArea> = memo(({ src, alt }) => {
+  const { colors } = useTheme();
+
+  return (
+    <div css={styles.BookViewerArea}>
+      <Image
+        src={`${src}?fit=pad&w=550&h=550&bg=rgb:${colors.glay.light.slice(1)}`}
+        alt={alt}
+        width={550}
+        height={550}
+        layout="responsive"
+      />
+    </div>
+  );
+});
 
 type Props = {
   fragmentRef: BookViewerArea_fragment$key;
@@ -58,6 +63,7 @@ const BookViewer: FC<Props> = ({ fragmentRef }) => {
       cover,
       samplePagesCollection,
     });
+  const { colors } = useTheme();
 
   return (
     <div css={styles.bookSampleContainer}>
@@ -67,7 +73,7 @@ const BookViewer: FC<Props> = ({ fragmentRef }) => {
           css={styles.controleButton("prev")}
           aria-label="前のページへ"
         >
-          <ChevronLeft sx={{ color: "#fff" }} fontSize="large" />
+          <ChevronLeft sx={{ color: colors.text.main }} fontSize="large" />
         </button>
         <BookViewerArea
           src={bookViewerData[currentPage].url}
@@ -78,7 +84,7 @@ const BookViewer: FC<Props> = ({ fragmentRef }) => {
           css={styles.controleButton("next")}
           aria-label="次のページへ"
         >
-          <ChevronRight sx={{ color: "#fff" }} fontSize="large" />
+          <ChevronRight sx={{ color: colors.text.main }} fontSize="large" />
         </button>
       </div>
       <ul css={styles.bookSampleList}>
@@ -91,10 +97,10 @@ const BookViewer: FC<Props> = ({ fragmentRef }) => {
               handleChange(index);
             }}
             tabIndex={0}
-            css={styles.bookSampleListItem(index === currentPage)}
+            css={(theme) => styles.bookSampleListItem(index === currentPage, theme)}
           >
             <Image
-              src={`${url}?fit=pad&w=130&h=130&bg=rgb:cccccc`}
+              src={`${url}?fit=pad&w=130&h=130&bg=rgb:${colors.glay.light.slice(1)}`}
               width={130}
               height={130}
               alt={title}
@@ -111,8 +117,6 @@ const styles = {
   bookSampleContainer: css(
     mq({
       flexShrink: 0,
-      // position: ["static", "sticky"],
-      // top: 0,
       width: ["100%", 550],
       marginRight: [0, 32],
       marginBottom: [32, 0],
@@ -130,13 +134,13 @@ const styles = {
     gridTemplateColumns: "repeat(4, 1fr)",
     gap: 8,
   }),
-  bookSampleListItem: (isActive: boolean) =>
+  bookSampleListItem: (isActive: boolean, theme: Theme) =>
     css({
       overflow: "hidden",
       borderRadius: 4,
       borderStyle: "solid",
       borderWidth: 2,
-      borderColor: isActive ? colors.primary.main : "rgba(0, 0, 0, 0)",
+      borderColor: isActive ? theme.colors.primary.main : "transparent",
       "&:hover": {
         cursor: "pointer",
         opacity: 0.8,

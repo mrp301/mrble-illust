@@ -4,9 +4,8 @@ import { mq } from "@/styles/mediaQueries";
 import Image from "next/image";
 import Link from "next/link";
 import { textStyles } from "@/styles";
-import { colors } from "@/constants";
-import { color } from "@/styles/theme";
 import dayjs from "dayjs";
+import { Theme } from "@/types/theme";
 
 export type BookListItemType = {
   title: string;
@@ -43,11 +42,9 @@ const BookListItem: FC<BookListItemType> = ({
             />
           </div>
           <div css={styles.body}>
-            <div css={[styles.title, textStyles.large]}>{title}</div>
-            <div css={[bookRelease, textStyles.xsmall]}>
-              {dayjs(releaseDate).format("YYYY年M月D日")}
-            </div>
-            <div css={[bookEvent, textStyles.xsmall]}>{event}</div>
+            <div css={styles.title}>{title}</div>
+            <div css={bookRelease}>{dayjs(releaseDate).format("YYYY年M月D日")}</div>
+            <div css={bookEvent}>{event}</div>
           </div>
         </a>
       </Link>
@@ -56,41 +53,58 @@ const BookListItem: FC<BookListItemType> = ({
 };
 
 const styles = {
-  container: css({
-    "&:hover": {
-      cursor: "pointer",
-      opacity: 0.8,
-    },
-    a: {
-      textDecoration: "none",
-    },
-  }),
-  coverContainer: css({
-    borderRadius: 8,
-    border: `1px solid ${color.gray[30]}`,
-    overflow: "hidden",
-  }),
+  container: (theme: Theme) =>
+    css({
+      "&:hover": {
+        cursor: "pointer",
+        opacity: 0.8,
+        color: theme.colors.text.main,
+      },
+      a: {
+        textDecoration: "none",
+      },
+    }),
+  coverContainer: (theme: Theme) =>
+    css({
+      borderRadius: 8,
+      border: `1px solid ${theme.colors.glay.lighter}`,
+      overflow: "hidden",
+    }),
   body: css(
     mq({
       display: ["none", "block"],
       padding: "8px 0",
     })
   ),
-  title: css({
-    color: colors.black,
-    fontWeight: "bold",
-    "&:hover": {
-      textDecoration: "underline",
-    },
-  }),
+  title: (theme: Theme) =>
+    css(
+      [
+        {
+          color: theme.colors.text.main,
+          fontWeight: "bold",
+          "&:hover": {
+            textDecoration: "underline",
+          },
+        },
+      ],
+      textStyles.large
+    ),
 };
 
-const bookRelease = css({
-  color: colors.glay,
-});
+const bookRelease = (theme: Theme) =>
+  css([
+    {
+      color: theme.colors.text.main,
+    },
+    textStyles.xsmall,
+  ]);
 
-const bookEvent = css({
-  color: colors.glay,
-});
+const bookEvent = (theme: Theme) =>
+  css([
+    {
+      color: theme.colors.text.main,
+    },
+    textStyles.xsmall,
+  ]);
 
 export { BookListItem };

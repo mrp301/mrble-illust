@@ -1,71 +1,64 @@
 import React, { FC } from "react";
 import { css } from "@emotion/react";
-import { color } from "@/styles/theme";
 import { layout } from "@/styles/layout";
 import { textStyles } from "@/styles";
 import { mq } from "@/styles/mediaQueries";
 import dayjs from "dayjs";
+import { Theme } from "@/types/theme";
+
+const links = [
+  {
+    href: "https://twitter.com/tubdaka616",
+    text: "twitter",
+  },
+  {
+    href: "https://www.pixiv.net/users/4898502",
+    text: "pixiv",
+  },
+  {
+    href: "https://github.com/mrp301/mrble-illust",
+    text: "github",
+  },
+  {
+    href: "https://www.figma.com/file/3m4E1CxUPMut14YtqDZG8J/mrble-illust?node-id=0%3A1",
+    text: "Figma",
+  },
+  {
+    href: "https://mrp301.github.io/mrble-illust/",
+    text: "Storybook",
+  },
+];
 
 const Footer: FC = () => (
   <footer css={styles.container}>
     <div css={styles.inner}>
-      <small css={[styles.small, textStyles.small]}>
-        @ {dayjs().format("YYYY")} mrble Inc.
-      </small>
-      <ul css={[styles.links, textStyles.small]}>
-        <li>
-          <a href="https://twitter.com/tubdaka616" target="_blank" rel="noreferrer">
-            twitter
-          </a>
-        </li>
-        <li>
-          <a href="https://www.pixiv.net/users/4898502" target="_blank" rel="noreferrer">
-            pixiv
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://github.com/mrp301/mrble-illust"
-            target="_blank"
-            rel="noreferrer"
-          >
-            github
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.figma.com/file/3m4E1CxUPMut14YtqDZG8J/mrble-illust?node-id=0%3A1"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Figma
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://mrp301.github.io/mrble-illust/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Storybook
-          </a>
-        </li>
+      <small css={styles.small}>@ {dayjs().format("YYYY")} mrble Inc.</small>
+      <ul css={styles.links}>
+        {links.map(({ href, text }) => (
+          <li key={text}>
+            <a href={href} target="_blank" rel="noreferrer">
+              {text}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </footer>
 );
 
 const styles = {
-  container: css(
-    mq({
-      width: "100%",
-      padding: "16px",
-      borderTop: `1px solid ${color.gray[30]}`,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    })
-  ),
+  container: (theme: Theme) =>
+    css(
+      mq({
+        width: "100%",
+        padding: "16px",
+        borderTop: `1px solid ${theme.colors.glay.lighter}`,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: theme.colors.baseColor,
+      })
+    ),
   inner: css(
     mq({
       display: "flex",
@@ -77,25 +70,33 @@ const styles = {
       margin: "0 auto",
     })
   ),
-  small: css({
-    color: color.gray[60],
-  }),
-  links: css({
-    display: "flex",
-    justifyContent: "flex-end",
-    li: {
-      "&:not(:last-child)": {
-        marginRight: 32,
+  small: (theme: Theme) =>
+    css([
+      {
+        color: theme.colors.glay.light,
       },
-    },
-    a: {
-      color: color.gray[60],
-      textDecoration: "none",
-      "&:hover": {
-        textDecoration: "underline",
+      textStyles.small,
+    ]),
+  links: (theme: Theme) =>
+    css([
+      {
+        display: "flex",
+        justifyContent: "flex-end",
+        li: {
+          "&:not(:last-child)": {
+            marginRight: 32,
+          },
+        },
+        a: {
+          color: theme.colors.text.light,
+          textDecoration: "none",
+          "&:hover": {
+            textDecoration: "underline",
+          },
+        },
       },
-    },
-  }),
+      textStyles.small,
+    ]),
 };
 
 export { Footer };

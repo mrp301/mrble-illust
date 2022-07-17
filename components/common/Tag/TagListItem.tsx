@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { css } from "@emotion/react";
 import { textStyles } from "@/styles";
-import { colors } from "@/constants";
+import { Theme } from "@/types/theme";
 
 export type Props = {
   children: ReactNode;
@@ -9,18 +9,21 @@ export type Props = {
 };
 
 export const TagListItem: FC<Props> = ({ children, color }) => {
-  return <div css={[styles.container(color), textStyles.small]}>{children}</div>;
+  return <div css={(theme) => styles.container(color, theme)}>{children}</div>;
 };
 
 const styles = {
-  container: (color: string) =>
-    css({
-      borderRadius: 4,
-      textAlign: "center",
-      color: "#fff",
-      fontWeight: "bold",
-      padding: "8px 24px",
-      backgroundColor: colors[color],
-      whiteSpace: "nowrap",
-    }),
+  container: (color: string, theme: Theme) =>
+    css([
+      {
+        borderRadius: 4,
+        textAlign: "center",
+        color: theme.colors.text.main,
+        fontWeight: "bold",
+        padding: "8px 24px",
+        backgroundColor: theme.colors[color],
+        whiteSpace: "nowrap",
+      },
+      textStyles.small,
+    ]),
 };

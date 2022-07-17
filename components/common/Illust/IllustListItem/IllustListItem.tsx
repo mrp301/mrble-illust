@@ -4,8 +4,7 @@ import { mq } from "@/styles/mediaQueries";
 import Image from "next/image";
 import Link from "next/link";
 import { textStyles } from "@/styles";
-import { color } from "@/styles/theme";
-import { colors } from "@/constants";
+import { Theme } from "@/types/theme";
 
 type Props = {
   title: string;
@@ -26,7 +25,7 @@ const IMG_HEIGHT = 220;
 const IllustListItem: FC<Props> = ({ title, opusNo, image }) => {
   const width = Math.floor((image.width * IMG_HEIGHT) / image.height);
   return (
-    <li css={styles.container(width)}>
+    <li css={(theme) => styles.container(width, theme)}>
       <Link href={`/illustrations/${opusNo}`} passHref>
         <a>
           <div css={styles.imageContainer}>
@@ -52,7 +51,7 @@ const IllustListItem: FC<Props> = ({ title, opusNo, image }) => {
 };
 
 const styles = {
-  container: (width: number) =>
+  container: (width: number, theme: Theme) =>
     css({
       width,
       flexGrow: width,
@@ -62,14 +61,15 @@ const styles = {
       },
       a: {
         textDecoration: "none",
-        color: colors.black,
+        color: theme.colors.black,
       },
     }),
-  imageContainer: css({
-    overflow: "hidden",
-    borderRadius: 8,
-    border: `1px solid ${color.gray[30]}`,
-  }),
+  imageContainer: (theme: Theme) =>
+    css({
+      overflow: "hidden",
+      borderRadius: 8,
+      border: `1px solid ${theme.colors.glay.light}`,
+    }),
   body: css(
     mq({
       display: ["none", "flex"],

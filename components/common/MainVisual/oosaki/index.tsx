@@ -6,7 +6,7 @@ import { Header } from "../../Header";
 const MainVisual: FC = () => {
   return (
     <>
-      <Header bgColor="none" css={styles.header} theme="dark" />
+      <Header bgColor={false} css={styles.header} />
       <div css={styles.conatiner}>
         <div css={styles.textContainer}>
           <div css={styles.mainTitle}>mrble</div>

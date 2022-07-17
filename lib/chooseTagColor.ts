@@ -1,6 +1,6 @@
-import { colors } from "@/constants";
+import { lightColor, darkColor } from "@/constants";
 
-type ColorKey = keyof Omit<typeof colors, "black">;
+type ColorKey = keyof typeof lightColor | keyof typeof darkColor;
 
 type ColorTheme = {
   name: string;
@@ -68,5 +68,5 @@ const colorTheme: ColorTheme = [
 
 export const chooseTagColor = (text: string): ColorKey => {
   const chooseColor = colorTheme.find(({ name }) => name === text);
-  return chooseColor?.color ?? "glay";
+  return chooseColor?.color ?? "purple";
 };

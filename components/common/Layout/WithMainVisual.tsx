@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { Footer } from "../Footer";
 import { MainVisual } from "../MainVisual/oosaki";
-import { mainStyles } from "./dependencies/style";
+import { MainContainer } from "./MainContainer";
 
 type Props = {
   children: ReactNode;
@@ -11,9 +11,7 @@ const WithMainVisual: FC<Props> = ({ children }) => {
   return (
     <>
       <MainVisual />
-      <main css={mainStyles.main}>
-        <div css={mainStyles.inner}>{children}</div>
-      </main>
+      <MainContainer>{children}</MainContainer>
       <Footer />
     </>
   );

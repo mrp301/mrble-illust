@@ -3,31 +3,23 @@ import React, { FC } from "react";
 import Link from "next/link";
 import { layout } from "@/styles/layout";
 import { mq } from "@/styles/mediaQueries";
-
-type BgColor = "white" | "none";
-type Theme = "light" | "dark";
+import { Theme } from "@/types/theme";
 
 type Props = {
-  bgColor: BgColor;
-  theme?: Theme;
+  bgColor?: boolean;
 } & JSX.IntrinsicElements["header"];
 
-const backgroundColor = {
-  white: "#fff",
-  none: "rgba(0, 0, 0, 0)",
-} as const;
-
-const Header: FC<Props> = ({ bgColor, theme = "light", ...props }) => {
+const Header: FC<Props> = ({ bgColor = true, ...props }) => {
   return (
-    <header css={styles.container(bgColor)} {...props}>
+    <header css={(theme) => styles.container(bgColor, theme)} {...props}>
       <div css={styles.inner}>
-        <h1 css={styles.title(theme)}>
+        <h1 css={styles.title}>
           <Link href="/" passHref>
             <a>mrble illustration</a>
           </Link>
         </h1>
         <nav css={styles.navListContainer}>
-          <ul css={styles.navList(theme)}>
+          <ul css={styles.navList}>
             <li>
               <Link href="/" passHref>
                 <a>Books</a>
@@ -46,11 +38,11 @@ const Header: FC<Props> = ({ bgColor, theme = "light", ...props }) => {
 };
 
 const styles = {
-  container: (bgColor: BgColor) =>
+  container: (bgColor: boolean, theme: Theme) =>
     css(
       mq({
         padding: ["12px 16px", "24px 32px"],
-        backgroundColor: backgroundColor[bgColor],
+        backgroundColor: bgColor ? theme.colors.baseColor : "transparent",
       })
     ),
   inner: css({
@@ -65,7 +57,7 @@ const styles = {
       fontSize: 15,
       fontWeight: "bold",
       a: {
-        color: theme === "dark" ? "#fff" : "#000",
+        color: theme.colors.text.main,
         textDecoration: "none",
         ":hover": {
           textDecoration: "underline",
@@ -86,7 +78,7 @@ const styles = {
           marginRight: 16,
         },
         a: {
-          color: theme === "dark" ? "#fff" : "#000",
+          color: theme.colors.text.main,
           fontWeight: "bold",
           textDecoration: "none",
           ":hover": {

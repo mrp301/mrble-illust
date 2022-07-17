@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import React, { FC, ReactNode } from "react";
-import { colors } from "@/constants";
+import { Theme } from "@/types/theme";
 
 type Layout = "fill" | "auto";
 type Priority = "primary" | "normal";
@@ -17,22 +17,27 @@ const Button: FC<Props> = ({
   ...props
 }) => {
   return (
-    <button css={[styles.container(layout), priorityStyle[priority]]} {...props}>
+    <button
+      css={(theme) => [styles.container(layout), priorityStyle[priority](theme)]}
+      {...props}
+    >
       {children}
     </button>
   );
 };
 
 const priorityStyle = {
-  normal: css({
-    backgroundColor: colors.black,
-  }),
-  primary: css({
-    backgroundColor: colors.primary.main,
-    "&:hover": {
-      backgroundColor: colors.primary.light,
-    },
-  }),
+  normal: (theme: Theme) =>
+    css({
+      backgroundColor: theme.colors.black,
+    }),
+  primary: (theme: Theme) =>
+    css({
+      backgroundColor: theme.colors.primary.main,
+      "&:hover": {
+        backgroundColor: theme.colors.primary.light,
+      },
+    }),
 } as const;
 
 const styles = {

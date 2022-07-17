@@ -23,7 +23,7 @@ import { useQuery } from "relay-hooks";
 import bookDetailQuery from "@/query/bookDetail";
 import { bookDetailQuery as BookDetailQuery } from "@/query/__generated__/bookDetailQuery.graphql";
 import { chooseTagColor } from "@/lib/chooseTagColor";
-import { color } from "@/styles/theme";
+import { Theme } from "@/types/theme";
 
 export const BookDetail: WithLayout<FC> = () => {
   const slug = useGetQuery("title");
@@ -97,7 +97,7 @@ export const BookDetail: WithLayout<FC> = () => {
                 <Heading tag="h3" css={margin.bottom[16]}>
                   書籍情報
                 </Heading>
-                <dl css={[styles.bookInfoList, textStyles.small]}>
+                <dl css={styles.bookInfoList}>
                   <div>
                     <dt>販売価格</dt>
                     <dd>{bookData.price.toLocaleString()}円</dd>
@@ -184,17 +184,21 @@ const styles = {
   description: css({
     whiteSpace: "pre-wrap",
   }),
-  bookInfoList: css({
-    display: "grid",
-    gridTemplateColumns: "1fr 2fr",
-    gap: "4px 4px",
-    "> *": {
-      display: "contents",
-    },
-    dt: {
-      color: color.gray[60],
-    },
-  }),
+  bookInfoList: (theme: Theme) =>
+    css([
+      {
+        display: "grid",
+        gridTemplateColumns: "1fr 2fr",
+        gap: "4px 4px",
+        "> *": {
+          display: "contents",
+        },
+        dt: {
+          color: theme.colors.text.light,
+        },
+      },
+      textStyles.small,
+    ]),
 };
 
 BookDetail.getLayout = getLayoutDefault;

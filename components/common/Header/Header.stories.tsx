@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStoryObj, ComponentMeta } from "@storybook/react";
 import { Header } from "./Header";
-import { colors } from "@/constants";
+import { lightColor } from "@/constants";
 
 export default {
   component: Header,
@@ -10,7 +10,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div style={{ backgroundColor: colors.glay }}>
+      <div style={{ backgroundColor: lightColor.glay.light }}>
         <Story />
       </div>
     ),
@@ -20,12 +20,12 @@ export default {
 
 export const BgWhite: ComponentStoryObj<typeof Header> = {
   args: {
-    bgColor: "white",
+    bgColor: true,
   },
 };
 
 export const BgNone: ComponentStoryObj<typeof Header> = {
   args: {
-    bgColor: "none",
+    bgColor: false,
   },
 };

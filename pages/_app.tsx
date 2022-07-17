@@ -5,6 +5,7 @@ import "../styles/global.scss";
 import "../styles/MasonryImageList.scss";
 import { ReactRelayContext } from "react-relay";
 import { useEnvironment } from "@/relay/fetchGraphQL";
+import { ThemeProvider } from "@/components/common";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -20,7 +21,7 @@ const App: FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
 
   return (
     <ReactRelayContext.Provider value={{ environment }}>
-      {getLayout(<Component {...pageProps} />)}
+      <ThemeProvider>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
     </ReactRelayContext.Provider>
   );
 };
