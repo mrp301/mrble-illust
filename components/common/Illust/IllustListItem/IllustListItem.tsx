@@ -61,7 +61,7 @@ const styles = {
       },
       a: {
         textDecoration: "none",
-        color: theme.colors.black,
+        color: theme.colors.text.main,
       },
     }),
   imageContainer: (theme: Theme) =>

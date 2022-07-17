@@ -129,22 +129,18 @@ export const BookDetail: WithLayout<FC> = () => {
         <div css={margin.bottom[32]}>
           <RecommendBookList fragmentRef={data.recommendBooksCollection} />
         </div>
-        <Breadcrumb
+        {/* <Breadcrumb
           items={[
             {
               slug: "/",
               text: "トップ",
             },
             {
-              slug: "/books",
-              text: "書籍一覧",
-            },
-            {
               slug: `/${bookData.slug}`,
               text: bookData.title,
             },
           ]}
-        />
+        /> */}
       </div>
     </>
   );

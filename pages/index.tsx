@@ -76,11 +76,11 @@ const Index: WithLayout<FC<Props>> = ({ bookListData, illustListData, totalCount
           </>
         </Container>
         <Container vertical={48} horizontal={0}>
-          <HeadingWithMore tag="h2" href="/" css={margin.bottom[32]}>
+          <Heading tag="h2" css={margin.bottom[32]}>
             <a>
               Books<span css={textStyles.large}>({bookListData.length})</span>
             </a>
-          </HeadingWithMore>
+          </Heading>
           <BookList bookListData={bookListData} />
         </Container>
         <Container vertical={48} horizontal={0}>
