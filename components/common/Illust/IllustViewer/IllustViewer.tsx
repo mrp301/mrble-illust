@@ -35,8 +35,6 @@ export const IllustViewer: FC = () => {
             width={image.width}
             height={image.height}
             layout="responsive"
-            blurDataURL={`${image.url}?fit=thumb`}
-            placeholder="blur"
           />
         </div>
         <SpContainer>

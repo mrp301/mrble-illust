@@ -39,7 +39,7 @@ const IllustViewerModal: FC = () => {
 const modalStyles = {
   content: css(
     mq({
-      overflow: "scroll",
+      overflowY: "scroll",
       position: "fixed",
       left: [0, "180px"],
       right: [0, "180px"],
