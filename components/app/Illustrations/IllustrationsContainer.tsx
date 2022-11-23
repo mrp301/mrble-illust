@@ -17,7 +17,7 @@ export const IllustrationsContainer: FC<Props> = ({ illustList }) => {
     <>
       {convertImageData.map((illustList) => (
         <div key={illustList[0].createYear} css={margin.bottom[48]}>
-          <Heading tag="h2" css={margin.bottom[32]}>
+          <Heading tag="h2" isSticky css={margin.bottom[32]}>
             {illustList[0].createYear}
             <span css={textStyles.large}>({illustList.length})</span>
           </Heading>
