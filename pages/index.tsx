@@ -9,6 +9,7 @@ import {
   IllustList,
   Container,
   IllustListItemType,
+  IllustViewerModal,
 } from "@/components/common";
 import { HeadingWithMore } from "@/components/app/Index/HeadingWithMore/HeadingWithMore";
 import { margin, textStyles, fontWeight } from "@/styles";
@@ -69,9 +70,9 @@ const Index: WithLayout<FC<Props>> = ({ bookListData, illustListData, totalCount
             </Heading>
             <div css={[textStyles.xlarge, fontWeight.bold, margin.bottom[12]]}>mrble</div>
             <p css={textStyles.medium}>
-              メイドと量産型と地雷系が好き。趣味で同人誌を描いてます。
+              趣味で同人誌を描いてます。 本業はフロントエンドエンジニア。
               <br />
-              本業はフロントエンドエンジニア。
+              最近はエレキギターにハマってる。
             </p>
           </>
         </Container>
@@ -92,6 +93,7 @@ const Index: WithLayout<FC<Props>> = ({ bookListData, illustListData, totalCount
           <IllustList illustList={illustListData} />
         </Container>
       </div>
+      <IllustViewerModal />
     </>
   );
 };
