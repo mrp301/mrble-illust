@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import React, { FC } from "react";
 import { mq } from "@/styles/mediaQueries";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { textStyles } from "@/styles";
@@ -23,10 +24,17 @@ export type IllustListItemType = Props;
 const IMG_HEIGHT = 220;
 
 const IllustListItem: FC<Props> = ({ title, opusNo, image }) => {
+  const router = useRouter();
+
   const width = Math.floor((image.width * IMG_HEIGHT) / image.height);
   return (
     <li css={(theme) => styles.container(width, theme)}>
-      <Link href={`/illustrations/${opusNo}`} passHref>
+      <Link
+        href={`${router.pathname}?opusNo=${opusNo}`}
+        as={`/illustrations/${opusNo}`}
+        scroll={false}
+        passHref
+      >
         <a>
           <div css={styles.imageContainer}>
             <Image

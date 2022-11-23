@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { CommonHead } from "@/components/CommonHead";
-import { SpContainer, IllustListItemType } from "@/components/common";
+import { SpContainer, IllustListItemType, IllustViewerModal } from "@/components/common";
 import { getLayoutDefault } from "@/lib/getLayout";
 import { IllustrationsContainer } from "@/components/app";
 import { GetStaticProps } from "next";
@@ -45,6 +45,7 @@ const Illustrations: WithLayout<FC<Props>> = ({ illustListData }) => {
       <SpContainer vertical={0} horizontal={16}>
         <IllustrationsContainer illustList={illustListData} />
       </SpContainer>
+      <IllustViewerModal />
     </>
   );
 };
