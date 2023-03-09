@@ -12,10 +12,8 @@ const HeadingWithMore: FC<Props> = ({ href, className, ...props }) => {
   return (
     <div css={styles.container} className={className}>
       <Heading {...props} />
-      <Link href={href} passHref>
-        <a css={[textStyles.medium, styles.text]}>
-          <TextWithChevron iconPosition="right">More</TextWithChevron>
-        </a>
+      <Link href={href} css={[textStyles.medium, styles.text]}>
+        <TextWithChevron iconPosition="right">More</TextWithChevron>
       </Link>
     </div>
   );

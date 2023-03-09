@@ -1,7 +1,9 @@
+/* eslint-env node */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 
 module.exports = {
-  webpack: (config, options) => {
+  webpack: (config) => {
     config.resolve.alias["@"] = path.join(__dirname);
     config.module.rules.push({
       test: /\.(png|jpg|svg)$/,

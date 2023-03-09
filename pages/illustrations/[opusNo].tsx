@@ -33,7 +33,6 @@ export const IllustView: WithLayout<FC> = () => {
               alt={`${opusNo}_${title}`}
               width={image.width}
               height={image.height}
-              layout="responsive"
               blurDataURL={`${image.url}?fit=thumb`}
               placeholder="blur"
             />

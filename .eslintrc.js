@@ -19,7 +19,7 @@ module.exports = {
       version: "detect",
     },
   },
-  plugins: ["react", "@typescript-eslint", "prettier"],
+  plugins: ["react", "@typescript-eslint", "prettier", "@emotion"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -33,5 +33,6 @@ module.exports = {
     // TypeScirpt なので prop-types は要らない
     "react/prop-types": "off",
     "prettier/prettier": "error",
+    "react/no-unknown-property": ["error", { ignore: ["css"] }],
   },
 };

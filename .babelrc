@@ -10,5 +10,5 @@
       }
     ]
   ],
-  "plugins": ["relay", "@emotion/babel-plugin"]
+  "plugins": ["relay", "@emotion"]
 }

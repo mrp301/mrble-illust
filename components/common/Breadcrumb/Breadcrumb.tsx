@@ -16,9 +16,7 @@ export const Breadcrumb: FC<Props> = ({ items }) => {
       <ul css={styles.container}>
         {items.map(({ slug, text }) => (
           <li key={slug}>
-            <Link href={slug} passHref>
-              <a>{text}</a>
-            </Link>
+            <Link href={slug}>{text}</Link>
           </li>
         ))}
       </ul>

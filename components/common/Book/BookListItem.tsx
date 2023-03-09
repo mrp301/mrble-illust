@@ -28,25 +28,23 @@ const BookListItem: FC<BookListItemType> = ({
 }) => {
   return (
     <li css={styles.container}>
-      <Link href={`/book/detail/${slug}`} passHref>
-        <a>
-          <div css={styles.coverContainer}>
-            <Image
-              src={cover.url}
-              alt={title}
-              width={cover.width}
-              height={cover.height}
-              layout={"responsive"}
-              blurDataURL={`${cover.url}?fit=thumb`}
-              placeholder="blur"
-            />
-          </div>
-          <div css={styles.body}>
-            <div css={styles.title}>{title}</div>
-            <div css={bookRelease}>{dayjs(releaseDate).format("YYYY年M月D日")}</div>
-            <div css={bookEvent}>{event}</div>
-          </div>
-        </a>
+      <Link href={`/book/detail/${slug}`}>
+        <div css={styles.coverContainer}>
+          <Image
+            src={cover.url}
+            alt={title}
+            width={cover.width}
+            height={cover.height}
+            blurDataURL={`${cover.url}?fit=thumb`}
+            placeholder="blur"
+            css={styles.image}
+          />
+        </div>
+        <div css={styles.body}>
+          <div css={styles.title}>{title}</div>
+          <div css={bookRelease}>{dayjs(releaseDate).format("YYYY年M月D日")}</div>
+          <div css={bookEvent}>{event}</div>
+        </div>
       </Link>
     </li>
   );
@@ -69,6 +67,12 @@ const styles = {
       borderRadius: 8,
       border: `1px solid ${theme.colors.glay.lighter}`,
       overflow: "hidden",
+    }),
+  image: () =>
+    css({
+      display: "block",
+      width: "100%",
+      height: "auto",
     }),
   body: css(
     mq({

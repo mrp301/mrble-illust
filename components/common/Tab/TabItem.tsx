@@ -15,7 +15,7 @@ const TabItem: FC<Props> = ({ href, text, isSelected }) => {
   const { handleClick } = useTab();
 
   return (
-    <li css={styles.container}>
+    <li css={styles.container(isSelected)}>
       <button type="button" onClick={(e) => handleClick(e, href)}>
         {text}
       </button>

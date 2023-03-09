@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { css } from "@emotion/react";
 import { CommonHead } from "@/components/CommonHead";
 import {
-  Breadcrumb,
   Button,
   Heading,
   TextWithChevron,
@@ -46,10 +45,8 @@ export const BookDetail: WithLayout<FC> = () => {
       <div css={styles.spContainer}>
         <CommonHead title={bookData.title} />
         <div css={[styles.navContainer, margin.bottom[16]]}>
-          <Link href="/" scroll={false} passHref>
-            <a>
-              <TextWithChevron iconPosition="left">Back</TextWithChevron>
-            </a>
+          <Link href="/" scroll={false}>
+            <TextWithChevron iconPosition="left">Back</TextWithChevron>
           </Link>
         </div>
       </div>

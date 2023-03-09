@@ -34,7 +34,7 @@ export const IllustViewer: FC = () => {
             alt={`${opusNo}_${title}`}
             width={image.width}
             height={image.height}
-            layout="responsive"
+            css={styles.image}
           />
         </div>
         <SpContainer>
@@ -81,4 +81,10 @@ const styles = {
       marginBottom: 20,
     })
   ),
+  image: () =>
+    css({
+      display: "block",
+      width: "100%",
+      height: "auto",
+    }),
 };

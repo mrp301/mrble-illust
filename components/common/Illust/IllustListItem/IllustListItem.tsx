@@ -33,26 +33,24 @@ const IllustListItem: FC<Props> = ({ title, opusNo, image }) => {
         href={`${router.pathname}?opusNo=${opusNo}`}
         as={`/illustrations/${opusNo}`}
         scroll={false}
-        passHref
       >
-        <a>
-          <div css={styles.imageContainer}>
-            <Image
-              src={`${image.url}?fit=fill&w=${width * 2}&h=${IMG_HEIGHT * 2}`}
-              alt={`${opusNo}_${title}`}
-              width={width}
-              height={IMG_HEIGHT}
-              layout="responsive"
-              blurDataURL={`${image.url}?fit=thumb`}
-              placeholder="blur"
-              lazyBoundary={`${IMG_HEIGHT * 2}px`}
-            />
-          </div>
-          <div css={[styles.body, styles.body, textStyles.small]}>
-            <div css={styles.opusNo}>{opusNo}</div>
-            <div css={styles.title}>{title}</div>
-          </div>
-        </a>
+        <div css={styles.imageContainer}>
+          <Image
+            src={`${image.url}?fit=fill&w=${width * 2}&h=${IMG_HEIGHT * 2}`}
+            alt={`${opusNo}_${title}`}
+            width={width}
+            height={IMG_HEIGHT}
+            blurDataURL={`${image.url}?fit=thumb`}
+            placeholder="blur"
+            css={styles.image}
+            // TODO:IntersectionObserverに置き換える
+            // lazyBoundary={`${IMG_HEIGHT * 2}px`}
+          />
+        </div>
+        <div css={[styles.body, styles.body, textStyles.small]}>
+          <div css={styles.opusNo}>{opusNo}</div>
+          <div css={styles.title}>{title}</div>
+        </div>
       </Link>
     </li>
   );
@@ -77,6 +75,12 @@ const styles = {
       overflow: "hidden",
       borderRadius: 8,
       border: `1px solid ${theme.colors.glay.light}`,
+    }),
+  image: () =>
+    css({
+      display: "block",
+      width: "100%",
+      height: "auto",
     }),
   body: css(
     mq({

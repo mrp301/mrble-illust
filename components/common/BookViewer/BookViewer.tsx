@@ -46,7 +46,7 @@ const BookViewerArea: FC<BookViewerArea> = memo(({ src, alt }) => {
         alt={alt}
         width={550}
         height={550}
-        layout="responsive"
+        css={styles.image}
       />
     </div>
   );
@@ -104,7 +104,7 @@ const BookViewer: FC<Props> = ({ fragmentRef }) => {
               width={130}
               height={130}
               alt={title}
-              layout="responsive"
+              css={styles.image}
             />
           </li>
         ))}
@@ -163,6 +163,12 @@ const styles = {
       "&:hover": {
         background: "rgba(255, 255, 255, 0.2)",
       },
+    }),
+  image: () =>
+    css({
+      display: "block",
+      width: "100%",
+      height: "auto",
     }),
 };
 

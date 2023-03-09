@@ -14,21 +14,15 @@ const Header: FC<Props> = ({ bgColor = true, ...props }) => {
     <header css={(theme) => styles.container(bgColor, theme)} {...props}>
       <div css={styles.inner}>
         <h1 css={styles.title}>
-          <Link href="/" passHref>
-            <a>mrble illustration</a>
-          </Link>
+          <Link href="/">mrble illustration</Link>
         </h1>
         <nav css={styles.navListContainer}>
           <ul css={styles.navList}>
             <li>
-              <Link href="/" passHref>
-                <a>Books</a>
-              </Link>
+              <Link href="/">Books</Link>
             </li>
             <li>
-              <Link href="/illustrations" passHref>
-                <a>Illustrations</a>
-              </Link>
+              <Link href="/illustrations">Illustrations</Link>
             </li>
           </ul>
         </nav>

@@ -162,8 +162,8 @@ export const BookDetail: React.FC<Props> = (props) => {
               src={`/images/book/${currentBook.fileName}`}
               width={463}
               height={654}
-              layout={"intrinsic"}
               css={image}
+              alt={currentBook.fileName}
             />
             <div css={body}>
               <div css={title}>{currentBook.title}</div>
