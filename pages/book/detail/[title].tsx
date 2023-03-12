@@ -9,35 +9,68 @@ import {
   SpContainer,
   PageBack,
 } from "@/components/common";
-import { RecommendBookList } from "@/components/app";
+import { GetStaticProps, GetStaticPaths } from "next";
+import { initEnvironment } from "@/relay/fetchGraphQL";
+import { fetchQuery } from "react-relay";
+// import { RecommendBookList } from "@/components/app";
 import { getLayoutDefault } from "@/lib/getLayout";
 import { margin } from "@/styles/margin";
-import { useGetQuery } from "@/lib/hooks";
-import Router from "next/router";
 import dayjs from "dayjs";
 import { mq } from "@/styles/mediaQueries";
 import { textStyles } from "@/styles";
-import { useQuery } from "relay-hooks";
+import booksQuery from "@/query/books";
+import { booksQuery as BooksQuery } from "@/query/__generated__/booksQuery.graphql";
 import bookDetailQuery from "@/query/bookDetail";
 import { bookDetailQuery as BookDetailQuery } from "@/query/__generated__/bookDetailQuery.graphql";
 import { chooseTagColor } from "@/lib/chooseTagColor";
 import { Theme } from "@/types/theme";
 
-export const BookDetail: WithLayout<FC> = () => {
-  const slug = useGetQuery("title");
-  const { data } = useQuery<BookDetailQuery>(bookDetailQuery, {
-    slug,
-  });
+type Props = {
+  booksCollection: BookDetailQuery["response"]["booksCollection"];
+  // 型わからん
+  initialRecords: unknown;
+};
 
-  const isLoadiing = !data?.booksCollection || !slug;
-  if (isLoadiing) return null;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const environment = initEnvironment();
+  const { booksCollection } = await fetchQuery<BooksQuery>(
+    environment,
+    booksQuery,
+    {}
+  ).toPromise();
 
-  if (!data?.booksCollection?.items.length) {
-    Router.push("/404");
-    return null;
-  }
+  const paths = booksCollection.items.map((item) => `/book/detail/${item.slug}`);
 
-  const bookData = data.booksCollection.items[0];
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const { title } = params;
+  const environment = initEnvironment();
+  const { booksCollection } = await fetchQuery<BookDetailQuery>(
+    environment,
+    bookDetailQuery,
+    {
+      slug: title.toString(),
+    }
+  ).toPromise();
+
+  // fragmentしたい場合はこれもreturnする
+  const initialRecords = environment.getStore().getSource().toJSON();
+
+  return {
+    props: {
+      booksCollection,
+      initialRecords,
+    },
+  };
+};
+
+export const BookDetail: WithLayout<FC<Props>> = ({ booksCollection }) => {
+  const [bookData] = booksCollection.items;
 
   return (
     <>
@@ -62,7 +95,7 @@ export const BookDetail: WithLayout<FC> = () => {
           })}
         >
           <div css={styles.container}>
-            <BookViewer fragmentRef={data.booksCollection.items[0]} />
+            <BookViewer fragmentRef={bookData} />
             <div css={styles.bookInfoConatiner}>
               <div css={margin.bottom[32]}>
                 <h2 css={[styles.title, margin.bottom[24]]}>{bookData.title}</h2>
@@ -114,12 +147,12 @@ export const BookDetail: WithLayout<FC> = () => {
             </div>
           </div>
         </div>
-        <Heading tag="h3" css={margin.bottom[16]}>
+        {/* <Heading tag="h3" css={margin.bottom[16]}>
           関連作品
         </Heading>
         <div css={margin.bottom[32]}>
           <RecommendBookList fragmentRef={data.recommendBooksCollection} />
-        </div>
+        </div> */}
         {/* <Breadcrumb
           items={[
             {
