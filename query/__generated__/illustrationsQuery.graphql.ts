@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f3c0217f61b146708685c00fb50a1138>>
+ * @generated SignedSource<<c833c32bc2a12acc41739f60407b249e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,27 +12,26 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type illustrationsQuery$variables = {
   limit: number;
 };
-export type illustrationsQueryVariables = illustrationsQuery$variables;
 export type illustrationsQuery$data = {
   readonly illustrationsCollection: {
-    readonly total: number;
     readonly items: ReadonlyArray<{
       readonly createDate: any | null;
       readonly image: {
+        readonly height: number | null;
         readonly url: string | null;
         readonly width: number | null;
-        readonly height: number | null;
       } | null;
+      readonly listed: boolean | null;
       readonly opusNo: number | null;
-      readonly title: string | null;
       readonly tag: ReadonlyArray<string | null> | null;
+      readonly title: string | null;
     } | null>;
+    readonly total: number;
   } | null;
 };
-export type illustrationsQueryResponse = illustrationsQuery$data;
 export type illustrationsQuery = {
-  variables: illustrationsQueryVariables;
   response: illustrationsQuery$data;
+  variables: illustrationsQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -137,6 +136,13 @@ v1 = [
             "kind": "ScalarField",
             "name": "tag",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "listed",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -163,16 +169,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "9df4974f27005ce3511712e6397f8969",
+    "cacheID": "d28391a1d019ed5b5da4d8cd0c05d5c7",
     "id": null,
     "metadata": {},
     "name": "illustrationsQuery",
     "operationKind": "query",
-    "text": "query illustrationsQuery(\n  $limit: Int!\n) {\n  illustrationsCollection(order: createDate_DESC, limit: $limit) {\n    total\n    items {\n      createDate\n      image {\n        url\n        width\n        height\n      }\n      opusNo\n      title\n      tag\n    }\n  }\n}\n"
+    "text": "query illustrationsQuery(\n  $limit: Int!\n) {\n  illustrationsCollection(order: createDate_DESC, limit: $limit) {\n    total\n    items {\n      createDate\n      image {\n        url\n        width\n        height\n      }\n      opusNo\n      title\n      tag\n      listed\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "fdeb6c36f6dae8bd14ae8887f1645827";
+(node as any).hash = "beb535dc2d5f6855f15b2154582c7d5f";
 
 export default node;

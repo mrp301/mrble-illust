@@ -1,6 +1,12 @@
 import React, { FC } from "react";
 import { CommonHead } from "@/components/CommonHead";
-import { SpContainer, IllustListItemType, IllustViewerModal } from "@/components/common";
+import {
+  PageBack,
+  SpContainer,
+  IllustListItemType,
+  IllustViewerModal,
+} from "@/components/common";
+import { margin } from "@/styles/margin";
 import { getLayoutDefault } from "@/lib/getLayout";
 import { IllustrationsContainer } from "@/components/app";
 import { GetStaticProps } from "next";
@@ -42,6 +48,9 @@ const Illustrations: WithLayout<FC<Props>> = ({ illustListData }) => {
   return (
     <>
       <CommonHead title="イラスト一覧" />
+      <div css={margin.bottom[16]}>
+        <PageBack href="/#illustrations" />
+      </div>
       <SpContainer vertical={0} horizontal={16}>
         <IllustrationsContainer illustList={illustListData} />
       </SpContainer>

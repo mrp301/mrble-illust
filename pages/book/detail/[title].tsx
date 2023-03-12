@@ -4,10 +4,10 @@ import { CommonHead } from "@/components/CommonHead";
 import {
   Button,
   Heading,
-  TextWithChevron,
   TagList,
   BookViewer,
   SpContainer,
+  PageBack,
 } from "@/components/common";
 import { RecommendBookList } from "@/components/app";
 import { getLayoutDefault } from "@/lib/getLayout";
@@ -16,7 +16,6 @@ import { useGetQuery } from "@/lib/hooks";
 import Router from "next/router";
 import dayjs from "dayjs";
 import { mq } from "@/styles/mediaQueries";
-import Link from "next/link";
 import { textStyles } from "@/styles";
 import { useQuery } from "relay-hooks";
 import bookDetailQuery from "@/query/bookDetail";
@@ -42,15 +41,10 @@ export const BookDetail: WithLayout<FC> = () => {
 
   return (
     <>
-      <div css={styles.spContainer}>
-        <CommonHead title={bookData.title} />
-        <div css={[styles.navContainer, margin.bottom[16]]}>
-          <Link href="/" scroll={false}>
-            <TextWithChevron iconPosition="left">Back</TextWithChevron>
-          </Link>
-        </div>
+      <CommonHead title={bookData.title} />
+      <div css={margin.bottom[16]}>
+        <PageBack href="/#books" />
       </div>
-
       <div css={margin.bottom[32]}>
         <SpContainer vertical={0} horizontal={16}>
           <TagList

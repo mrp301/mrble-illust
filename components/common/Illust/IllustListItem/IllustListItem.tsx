@@ -17,6 +17,7 @@ type Props = {
   };
   createDate: string;
   createYear: string;
+  listed?: boolean;
 };
 
 export type IllustListItemType = Props;

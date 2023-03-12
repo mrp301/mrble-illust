@@ -1,8 +1,8 @@
 import { graphql } from "relay-runtime";
 
 export default graphql`
-  query illustrationQuery($opusNo: Int!) {
-    illustrationsCollection(where: { opusNo: $opusNo }, limit: 1) {
+  query illustrationsListedQuery {
+    illustrationsCollection(where: { listed: true }, order: createDate_DESC) {
       items {
         createDate
         image {
@@ -12,7 +12,6 @@ export default graphql`
         }
         opusNo
         title
-        tag
         listed
       }
     }

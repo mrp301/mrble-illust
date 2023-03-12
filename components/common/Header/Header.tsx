@@ -16,7 +16,7 @@ const Header: FC<Props> = ({ bgColor = true, ...props }) => {
         <h1 css={styles.title}>
           <Link href="/">mrble illustration</Link>
         </h1>
-        <nav css={styles.navListContainer}>
+        {/* <nav css={styles.navListContainer}>
           <ul css={styles.navList}>
             <li>
               <Link href="/">Books</Link>
@@ -25,7 +25,7 @@ const Header: FC<Props> = ({ bgColor = true, ...props }) => {
               <Link href="/illustrations">Illustrations</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
       </div>
     </header>
   );

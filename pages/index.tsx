@@ -17,10 +17,12 @@ import { margin, textStyles, fontWeight } from "@/styles";
 import { GetStaticProps } from "next";
 import { fetchQuery } from "react-relay";
 import { initEnvironment } from "@/relay/fetchGraphQL";
-import { illustrationsQuery as IllustrationsQuery } from "@/query/__generated__/illustrationsQuery.graphql";
+import { illustrationsListedQuery as IllustrationsListedQuery } from "@/query/__generated__/illustrationsListedQuery.graphql";
+import illustrationsListed from "@/query/illustrationsListed";
+import { illustrationsCountQuery as IllustrationsCountQuery } from "@/query/__generated__/illustrationsCountQuery.graphql";
+import illustrationsCount from "@/query/illustrationsCount";
 import booksQuery from "@/query/books";
 import { booksQuery as BooksQuery } from "@/query/__generated__/booksQuery.graphql";
-import illustrations from "@/query/illustrations";
 import { convertIllustListData } from "@/lib";
 import { BookListItemType } from "@/components/common/Book";
 
@@ -32,13 +34,21 @@ type Props = {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const environment = initEnvironment();
-  const { illustrationsCollection } = await fetchQuery<IllustrationsQuery>(
+
+  const {
+    illustrationsCollection: { total },
+  } = await fetchQuery<IllustrationsCountQuery>(
     environment,
-    illustrations,
-    {
-      limit: 10,
-    }
+    illustrationsCount,
+    {}
   ).toPromise();
+
+  const { illustrationsCollection } = await fetchQuery<IllustrationsListedQuery>(
+    environment,
+    illustrationsListed,
+    {}
+  ).toPromise();
+
   const { booksCollection } = await fetchQuery<BooksQuery>(
     environment,
     booksQuery,
@@ -54,7 +64,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     props: {
       bookListData,
       illustListData,
-      totalCount: illustrationsCollection.total,
+      totalCount: total,
     },
   };
 };
@@ -65,42 +75,36 @@ const Index: WithLayout<FC<Props>> = ({ bookListData, illustListData, totalCount
       <CommonHead title="Home" />
       <div css={styles.conatiner}>
         <Container vertical={48} horizontal={0}>
-          <>
-            <Heading tag="h2" css={margin.bottom[32]}>
-              Profile
-            </Heading>
-            <div css={styles.profile}>
-              <Image
-                src="/images/mrble-profile-icon.jpg"
-                width={283}
-                height={283}
-                alt="mrbleのアイコン"
-                css={styles.profileImage}
-              />
-              <div css={styles.profileText}>
-                <div css={[textStyles.xxlarge, fontWeight.bold, margin.bottom[8]]}>
-                  mrble
-                </div>
-                <p css={textStyles.medium}>
-                  かわいい絵がすき。趣味で同人誌を描いてます。
-                </p>
+          <div css={styles.profile}>
+            <Image
+              src="/images/mrble-profile-icon.jpg"
+              width={283}
+              height={283}
+              alt="mrbleのアイコン"
+              css={styles.profileImage}
+            />
+            <div css={styles.profileText}>
+              <div css={[textStyles.xxlarge, fontWeight.bold, margin.bottom[8]]}>
+                mrble
               </div>
+              <p css={textStyles.medium}>かわいい絵がすき。趣味で同人誌を描いてます。</p>
             </div>
-          </>
+          </div>
         </Container>
         <Container vertical={48} horizontal={0}>
-          <Heading tag="h2" css={margin.bottom[32]}>
-            <a>
-              Books<span css={textStyles.large}>({bookListData.length})</span>
-            </a>
+          <Heading id="books" tag="h2" css={margin.bottom[32]}>
+            Books<span css={textStyles.large}>({bookListData.length})</span>
           </Heading>
           <BookList bookListData={bookListData} />
         </Container>
         <Container vertical={48} horizontal={0}>
-          <HeadingWithMore tag="h2" href="/illustrations/" css={margin.bottom[32]}>
-            <a>
-              <span css={textStyles.large}>Illustrations({totalCount})</span>
-            </a>
+          <HeadingWithMore
+            id="illustrations"
+            tag="h2"
+            href="/illustrations/"
+            css={margin.bottom[32]}
+          >
+            Illustrations<span css={textStyles.large}>({totalCount})</span>
           </HeadingWithMore>
           <IllustList illustList={illustListData} />
         </Container>

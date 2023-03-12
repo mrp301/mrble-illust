@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3473fcc72451b119657b610e00bd0853>>
+ * @generated SignedSource<<94b2ca6b68af99d65e581b1a73d0df05>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,26 +12,25 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type illustrationQuery$variables = {
   opusNo: number;
 };
-export type illustrationQueryVariables = illustrationQuery$variables;
 export type illustrationQuery$data = {
   readonly illustrationsCollection: {
     readonly items: ReadonlyArray<{
       readonly createDate: any | null;
       readonly image: {
+        readonly height: number | null;
         readonly url: string | null;
         readonly width: number | null;
-        readonly height: number | null;
       } | null;
+      readonly listed: boolean | null;
       readonly opusNo: number | null;
-      readonly title: string | null;
       readonly tag: ReadonlyArray<string | null> | null;
+      readonly title: string | null;
     } | null>;
   } | null;
 };
-export type illustrationQueryResponse = illustrationQuery$data;
 export type illustrationQuery = {
-  variables: illustrationQueryVariables;
   response: illustrationQuery$data;
+  variables: illustrationQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -135,6 +134,13 @@ v1 = [
             "kind": "ScalarField",
             "name": "tag",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "listed",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -161,16 +167,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "5860cb858321bddfcf63838af7ac90d9",
+    "cacheID": "ad29e20b0030497841d02fd155dcdc4d",
     "id": null,
     "metadata": {},
     "name": "illustrationQuery",
     "operationKind": "query",
-    "text": "query illustrationQuery(\n  $opusNo: Int!\n) {\n  illustrationsCollection(where: {opusNo: $opusNo}, limit: 1) {\n    items {\n      createDate\n      image {\n        url\n        width\n        height\n      }\n      opusNo\n      title\n      tag\n    }\n  }\n}\n"
+    "text": "query illustrationQuery(\n  $opusNo: Int!\n) {\n  illustrationsCollection(where: {opusNo: $opusNo}, limit: 1) {\n    items {\n      createDate\n      image {\n        url\n        width\n        height\n      }\n      opusNo\n      title\n      tag\n      listed\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "cbfc0c5728f66928524b28d510b94372";
+(node as any).hash = "45c65f1c257e3dffdb1d629994049593";
 
 export default node;

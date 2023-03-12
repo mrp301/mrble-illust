@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d1e63b2b22de687149f6dd879bdfb08e>>
+ * @generated SignedSource<<12f427c92634e9dd3607a9d33040c643>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,6 @@ import { FragmentRefs } from "relay-runtime";
 export type bookDetailQuery$variables = {
   slug: string;
 };
-export type bookDetailQueryVariables = bookDetailQuery$variables;
 export type bookDetailQuery$data = {
   readonly booksCollection: {
     readonly items: ReadonlyArray<{
@@ -27,8 +26,8 @@ export type bookDetailQuery$data = {
       readonly price: number | null;
       readonly releaseDate: any | null;
       readonly slug: string | null;
-      readonly title: string | null;
       readonly tag: ReadonlyArray<string | null> | null;
+      readonly title: string | null;
       readonly " $fragmentSpreads": FragmentRefs<"BookViewerArea_fragment">;
     } | null>;
   } | null;
@@ -36,10 +35,9 @@ export type bookDetailQuery$data = {
     readonly " $fragmentSpreads": FragmentRefs<"RecommendBookList_fragment">;
   } | null;
 };
-export type bookDetailQueryResponse = bookDetailQuery$data;
 export type bookDetailQuery = {
-  variables: bookDetailQueryVariables;
   response: bookDetailQuery$data;
+  variables: bookDetailQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){

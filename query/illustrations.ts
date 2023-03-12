@@ -14,6 +14,7 @@ export default graphql`
         opusNo
         title
         tag
+        listed
       }
     }
   }

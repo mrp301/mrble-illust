@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dda57fb397111b993249ad0a18c4c570>>
+ * @generated SignedSource<<1bf33a6ea3b8de15984a6462afcc8d6b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,20 +12,19 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type RecommendBookList_fragment$data = {
   readonly items: ReadonlyArray<{
-    readonly title: string | null;
-    readonly slug: string | null;
-    readonly event: string | null;
-    readonly releaseDate: any | null;
     readonly cover: {
+      readonly height: number | null;
       readonly title: string | null;
       readonly url: string | null;
       readonly width: number | null;
-      readonly height: number | null;
     } | null;
+    readonly event: string | null;
+    readonly releaseDate: any | null;
+    readonly slug: string | null;
+    readonly title: string | null;
   } | null>;
   readonly " $fragmentType": "RecommendBookList_fragment";
 };
-export type RecommendBookList_fragment = RecommendBookList_fragment$data;
 export type RecommendBookList_fragment$key = {
   readonly " $data"?: RecommendBookList_fragment$data;
   readonly " $fragmentSpreads": FragmentRefs<"RecommendBookList_fragment">;

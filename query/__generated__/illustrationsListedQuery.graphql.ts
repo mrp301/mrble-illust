@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<023fd85fdbaa70cbc6de165355b3e602>>
+ * @generated SignedSource<<c1afbab4b1329694f1aab6c8cd7b42c1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,79 +9,63 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type booksQuery$variables = {};
-export type booksQuery$data = {
-  readonly booksCollection: {
+export type illustrationsListedQuery$variables = {};
+export type illustrationsListedQuery$data = {
+  readonly illustrationsCollection: {
     readonly items: ReadonlyArray<{
-      readonly cover: {
+      readonly createDate: any | null;
+      readonly image: {
         readonly height: number | null;
-        readonly title: string | null;
         readonly url: string | null;
         readonly width: number | null;
       } | null;
-      readonly event: string | null;
-      readonly releaseDate: any | null;
-      readonly slug: string | null;
+      readonly listed: boolean | null;
+      readonly opusNo: number | null;
       readonly title: string | null;
     } | null>;
   } | null;
 };
-export type booksQuery = {
-  response: booksQuery$data;
-  variables: booksQuery$variables;
+export type illustrationsListedQuery = {
+  response: illustrationsListedQuery$data;
+  variables: illustrationsListedQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "title",
-  "storageKey": null
-},
-v1 = [
+var v0 = [
   {
     "alias": null,
     "args": [
       {
         "kind": "Literal",
         "name": "order",
-        "value": "releaseDate_DESC"
+        "value": "createDate_DESC"
+      },
+      {
+        "kind": "Literal",
+        "name": "where",
+        "value": {
+          "listed": true
+        }
       }
     ],
-    "concreteType": "BooksCollection",
+    "concreteType": "IllustrationsCollection",
     "kind": "LinkedField",
-    "name": "booksCollection",
+    "name": "illustrationsCollection",
     "plural": false,
     "selections": [
       {
         "alias": null,
         "args": null,
-        "concreteType": "Books",
+        "concreteType": "Illustrations",
         "kind": "LinkedField",
         "name": "items",
         "plural": true,
         "selections": [
-          (v0/*: any*/),
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "slug",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "event",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "releaseDate",
+            "name": "createDate",
             "storageKey": null
           },
           {
@@ -89,10 +73,9 @@ v1 = [
             "args": null,
             "concreteType": "Asset",
             "kind": "LinkedField",
-            "name": "cover",
+            "name": "image",
             "plural": false,
             "selections": [
-              (v0/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -116,12 +99,33 @@ v1 = [
               }
             ],
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "opusNo",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "title",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "listed",
+            "storageKey": null
           }
         ],
         "storageKey": null
       }
     ],
-    "storageKey": "booksCollection(order:\"releaseDate_DESC\")"
+    "storageKey": "illustrationsCollection(order:\"createDate_DESC\",where:{\"listed\":true})"
   }
 ];
 return {
@@ -129,8 +133,8 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "booksQuery",
-    "selections": (v1/*: any*/),
+    "name": "illustrationsListedQuery",
+    "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
@@ -138,20 +142,20 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "booksQuery",
-    "selections": (v1/*: any*/)
+    "name": "illustrationsListedQuery",
+    "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "7ef79f2bc646bc0a80b495f6694368e0",
+    "cacheID": "810f3688c374f64e73389f1af3ed9470",
     "id": null,
     "metadata": {},
-    "name": "booksQuery",
+    "name": "illustrationsListedQuery",
     "operationKind": "query",
-    "text": "query booksQuery {\n  booksCollection(order: releaseDate_DESC) {\n    items {\n      title\n      slug\n      event\n      releaseDate\n      cover {\n        title\n        url\n        width\n        height\n      }\n    }\n  }\n}\n"
+    "text": "query illustrationsListedQuery {\n  illustrationsCollection(where: {listed: true}, order: createDate_DESC) {\n    items {\n      createDate\n      image {\n        url\n        width\n        height\n      }\n      opusNo\n      title\n      listed\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "6f80870ce2b1d9f4b8f5f0b139d7753e";
+(node as any).hash = "0b77856734c81e65956a1117be8196e4";
 
 export default node;

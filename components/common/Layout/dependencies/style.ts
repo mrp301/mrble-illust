@@ -27,7 +27,7 @@ export const blurBgStyles = {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "top",
-    filter: "blur(25px)",
+    filter: "blur(20px)",
     "&::before": {
       content: "''",
       zIndex: 1,

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2a574d39b011d461630f5ab9d38cad22>>
+ * @generated SignedSource<<07d52c87084caa17004aef1d5cb61bf0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,7 +23,6 @@ export type BookViewerArea_fragment$data = {
   } | null;
   readonly " $fragmentType": "BookViewerArea_fragment";
 };
-export type BookViewerArea_fragment = BookViewerArea_fragment$data;
 export type BookViewerArea_fragment$key = {
   readonly " $data"?: BookViewerArea_fragment$data;
   readonly " $fragmentSpreads": FragmentRefs<"BookViewerArea_fragment">;
