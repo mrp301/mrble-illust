@@ -74,7 +74,7 @@ const Index: WithLayout<FC<Props>> = ({ bookListData, illustListData, totalCount
     <>
       <CommonHead title="Home" />
       <div css={styles.conatiner}>
-        <Container vertical={48} horizontal={0}>
+        <div css={margin.top[48]}>
           <div css={styles.profile}>
             <Image
               src="/images/mrble-profile-icon.jpg"
@@ -90,7 +90,7 @@ const Index: WithLayout<FC<Props>> = ({ bookListData, illustListData, totalCount
               <p css={textStyles.medium}>かわいい絵がすき。趣味で同人誌を描いてます。</p>
             </div>
           </div>
-        </Container>
+        </div>
         <Container vertical={48} horizontal={0}>
           <Heading id="books" tag="h2" css={margin.bottom[32]}>
             Books<span css={textStyles.large}>({bookListData.length})</span>
