@@ -21,4 +21,8 @@ export const textStyles = {
     fontSize: 20,
     lineHeight: 1.5,
   }),
+  xxlarge: css({
+    fontSize: 24,
+    lineHeight: 1.5,
+  }),
 } as const;

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Image from "next/image";
 import { css } from "@emotion/react";
 import { mq } from "@/styles/mediaQueries";
 import { CommonHead } from "../components/CommonHead";
@@ -68,12 +69,23 @@ const Index: WithLayout<FC<Props>> = ({ bookListData, illustListData, totalCount
             <Heading tag="h2" css={margin.bottom[32]}>
               Profile
             </Heading>
-            <div css={[textStyles.xlarge, fontWeight.bold, margin.bottom[12]]}>mrble</div>
-            <p css={textStyles.medium}>
-              趣味で同人誌を描いてます。 本業はフロントエンドエンジニア。
-              <br />
-              最近はエレキギターにハマってる。
-            </p>
+            <div css={styles.profile}>
+              <Image
+                src="/images/mrble-profile-icon.jpg"
+                width={283}
+                height={283}
+                alt="mrbleのアイコン"
+                css={styles.profileImage}
+              />
+              <div css={styles.profileText}>
+                <div css={[textStyles.xxlarge, fontWeight.bold, margin.bottom[8]]}>
+                  mrble
+                </div>
+                <p css={textStyles.medium}>
+                  かわいい絵がすき。趣味で同人誌を描いてます。
+                </p>
+              </div>
+            </div>
           </>
         </Container>
         <Container vertical={48} horizontal={0}>
@@ -102,6 +114,27 @@ const styles = {
   conatiner: css(
     mq({
       padding: ["0 16px", 0],
+    })
+  ),
+  profile: css(
+    mq({
+      display: "flex",
+      alignItems: "center",
+      flexDirection: ["column", "row"],
+    })
+  ),
+  profileText: css(
+    mq({
+      textAlign: ["center", "left"],
+    })
+  ),
+  profileImage: css(
+    mq({
+      marginRight: [0, 16],
+      marginBottom: [16, 0],
+      borderRadius: "50%",
+      width: 100,
+      height: 100,
     })
   ),
 };

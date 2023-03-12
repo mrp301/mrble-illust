@@ -10,7 +10,7 @@ export const MainContainer: FC<{ children: ReactNode }> = ({ children }) => {
   const mainStyles = {
     main: css({
       minHeight: "100vh",
-      background: theme.colors.baseColor,
+      // background: theme.colors.baseColor,
       color: theme.colors.text.main,
     }),
     inner: css(

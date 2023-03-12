@@ -56,7 +56,6 @@ const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: theme.colors.baseColor,
       })
     ),
   inner: css(

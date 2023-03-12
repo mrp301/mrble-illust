@@ -14,3 +14,33 @@ export const mainStyles = {
     })
   ),
 };
+
+export const blurBgStyles = {
+  bg: css({
+    zIndex: 0,
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
+    backgroundImage: "url(/images/main-visual/oosaki/hero.jpeg)",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "top",
+    filter: "blur(25px)",
+    "&::before": {
+      content: "''",
+      zIndex: 1,
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.85)",
+    },
+  }),
+  inner: css({
+    zIndex: 1,
+    position: "relative",
+  }),
+};
