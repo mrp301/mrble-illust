@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { mq } from "@/styles/mediaQueries";
 import { css, ClassNames } from "@emotion/react";
 import Modal from "react-modal";

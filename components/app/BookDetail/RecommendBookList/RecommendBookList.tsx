@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { BookList } from "../../../common";
 import { graphql, useFragment } from "react-relay";
 import { RecommendBookList_fragment$key } from "./__generated__/RecommendBookList_fragment.graphql";

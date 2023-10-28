@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { css } from "@emotion/react";
 import { Props as TagListItemType, TagListItem } from "./TagListItem";
 import { mq } from "@/styles/mediaQueries";

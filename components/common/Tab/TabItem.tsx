@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { FC } from "react";
+import { FC } from "react";
 import { color } from "@/styles/theme";
 import { mq } from "@/styles/mediaQueries";
 import { useTab } from "./dependencies";

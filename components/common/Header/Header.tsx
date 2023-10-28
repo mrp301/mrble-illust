@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { FC } from "react";
+import { FC } from "react";
 import Link from "next/link";
 import { layout } from "@/styles/layout";
 import { mq } from "@/styles/mediaQueries";

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Link from "next/link";
 import { css } from "@emotion/react";
 import { SpContainer, TextWithChevron } from "@/components/common";

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { getLayoutDefault } from "../lib/getLayout";
 
 const Custom404: WithLayout<FC> = () => {

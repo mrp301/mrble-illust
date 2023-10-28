@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { IllustList } from "@/components/common";
 import { IllustListItemType, Heading } from "@/components/common";
 import { margin, textStyles } from "@/styles";

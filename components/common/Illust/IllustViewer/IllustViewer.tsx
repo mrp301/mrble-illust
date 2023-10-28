@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { mq } from "@/styles/mediaQueries";
 import { css } from "@emotion/react";
 import Image from "next/image";
