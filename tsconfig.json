@@ -15,12 +15,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
     "typeRoots": ["node_modules/@types", "types"],
     "paths": {
       "@/*": ["./*"]
     },
-    "incremental": true,
-    "types": ["@emotion/react/types/css-prop"]
+    "incremental": true
   },
   "include": ["next-env.d.ts", "types/**/*", "**/*.ts", "**/*.tsx", "lib/bookData.js"],
   "exclude": ["node_modules"]
