@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { css } from "@emotion/react";
 import { mq } from "@/styles/mediaQueries";
 import { Footer } from "../Footer";

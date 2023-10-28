@@ -1,4 +1,4 @@
-import React, { FC, ComponentProps } from "react";
+import { FC, ComponentProps } from "react";
 import { css } from "@emotion/react";
 import { textStyles } from "@/styles";
 import { Heading, TextWithChevron } from "@/components/common";

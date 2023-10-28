@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import { FC, memo } from "react";
 import { css } from "@emotion/react";
 import { mq } from "@/styles/mediaQueries";
 import { margin } from "@/styles/margin";

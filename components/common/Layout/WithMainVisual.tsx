@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { blurBgStyles } from "./dependencies/style";
 import { Footer } from "../Footer";
 import { MainVisual } from "../MainVisual/oosaki";

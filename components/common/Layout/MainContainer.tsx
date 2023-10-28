@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { useTheme } from "@emotion/react";
 import { css } from "@emotion/react";
 import { mq } from "@/styles/mediaQueries";

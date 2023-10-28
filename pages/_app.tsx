@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
 import "../styles/global.scss";

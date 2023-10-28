@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, createContext, useContext } from "react";
+import { FC, ReactNode, createContext, useContext } from "react";
 import { css, Global } from "@emotion/react";
 import { ThemeProvider as Provider } from "@emotion/react";
 import { darkColor } from "@/constants";
