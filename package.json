@@ -11,7 +11,8 @@
     "firebase-dev": "firebase emulators:start --only storage --import ./emurator-export/ --export-on-exit=./emurator-export/",
     "relay": "relay-compiler",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o buildStorybook"
+    "build-storybook": "build-storybook -o buildStorybook",
+    "typecheck": "tsc --pretty --noEmit"
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.11.0",
